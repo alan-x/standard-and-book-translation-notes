@@ -34,25 +34,50 @@ name = elements crlf
 
 从视觉来说，规则定义是左对齐的。当一条规则需要多行的时候，接下来的行将会缩进。左对齐和缩进是相对于 ABNF 规则的第一行来说的，不需要匹配文档的左外边距。
 
-
-
 2.3 终结值
-
-```
-Rules resolve into a string of terminal values, sometimes called
-```
-
-```
-   characters.  In ABNF a character is merely a non-negative integer.
-   In certain contexts a specific mapping (encoding) of values into a
-   character set (such as ASCII) will be specified.
-```
 
 规则解析为一个终结值字符串，有时候叫做字符。在 ABNF 中，一个字符不过时一个非负整数。在确定的上下文中，一个指定的值到字符集（比如 ASCII）的映射（编码）将会被指定。
 
+```
+Terminals are specified by one or more numeric characters with the
+```
 
+```
+   base interpretation of those characters indicated explicitly.  The
+   following bases are currently defined:
+```
 
+终结值由一个或者多个数字字符指定，并明确指出这些字符的基本解释。下面定义了几个基础的：
 
+```
+b    = binary
+d    = decimal
+x    = hexadecimal
+```
+
+因此：
+
+```
+CR   = %d13
+CR   = %d0D
+```
+
+各表示 \[US-ASCII\] 回车的十进制和十六进制定义。
+
+```
+ A concatenated string of such values is specified compactly, using a
+```
+
+```
+   period (".") to indicate separation of characters within that value.
+   Hence:
+```
+
+许多这种值的紧凑的联合在一起，使用句点（“.”）去指示分离这个值。因此：
+
+```
+CRLF    = %d13.10
+```
 
 
 
