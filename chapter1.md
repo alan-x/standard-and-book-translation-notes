@@ -79,5 +79,20 @@ CR   = %d0D
 CRLF    = %d13.10
 ```
 
+ABNF 允许直接指定文本字符串字面量，用双引号包裹，因此：
+
+```
+command    = "command string"
+```
+
+```
+Literal text strings are interpreted as a concatenated set of
+ printable characters.
+```
+
+文本字符串字面量解释为一系列联合起来可打印的字符。
+
+> 注意：ABNF 字符串是大小写敏感的，并且这些字符串的字符集是 us-ascii。
+
 
 
