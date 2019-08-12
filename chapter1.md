@@ -36,5 +36,23 @@ name = elements crlf
 
 
 
+2.3 终结值
+
+```
+Rules resolve into a string of terminal values, sometimes called
+```
+
+```
+   characters.  In ABNF a character is merely a non-negative integer.
+   In certain contexts a specific mapping (encoding) of values into a
+   character set (such as ASCII) will be specified.
+```
+
+规则解析为一个终结值字符串，有时候叫做字符。在 ABNF 中，一个字符不过时一个非负整数。在确定的上下文中，一个指定的值到字符集（比如 ASCII）的映射（编码）将会被指定。
+
+
+
+
+
 
 
