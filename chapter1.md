@@ -73,7 +73,7 @@ CR   = %d0D
    Hence:
 ```
 
-许多这种值的紧凑的联合在一起，使用句点（“.”）去指示分离这个值。因此：
+许多这种值的紧凑的联合在一起，值与值之间使用句点（“.”）表示隔开。因此：
 
 ```
 CRLF    = %d13.10
@@ -85,14 +85,37 @@ ABNF 允许直接指定文本字符串字面量，用双引号包裹，因此：
 command    = "command string"
 ```
 
-```
-Literal text strings are interpreted as a concatenated set of
- printable characters.
-```
-
 文本字符串字面量解释为一系列联合起来可打印的字符。
 
-> 注意：ABNF 字符串是大小写敏感的，并且这些字符串的字符集是 us-ascii。
+> 注意：ABNF 字符串是大小写不敏感的，并且这些字符串的字符集是 us-ascii。
+
+因此：
+
+```
+rulename    = "abc"
+```
+
+和：
+
+```
+rulename    = "aBc"
+```
+
+将会匹配“abc”、“Abc”、“aBc”、“abC”、“ABc”、“aBC”、“AbC”和“ABC”。
+
+指定一个大小写敏感的规则，要单独的指定字符。
+
+比如：
+
+```
+rulename    = %d97 %d98 %d99
+```
+
+或者：
+
+```
+rulename    = %d97.98.99
+```
 
 
 
