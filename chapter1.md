@@ -294,11 +294,45 @@ LINEAR WHITE SPACE：连续是 ABNF 解析模型的核心。相邻字符（值�
 
 再次声明，推荐使用分组操作符可以让连接更明确。
 
-
-
-4. 使用 ABNF 定义 ABNF
+1. 使用 ABNF 定义 ABNF
 
 这里的语法使用 附录A（核心）提供的规则。
+
+```
+    rulelist      = 1*( rule / (*c-wsp c-nl) )
+    rule          = rulename defined-as elements c-nl
+                        ; 如果第二行是以空格开始则继续
+    rulename      = ALPHA *(ALPHA / DIGIT / "-")
+    defined-as    = *c-wsp ("=" / "=/") *c-wsp
+                        ; 基本规则定义和自增替换
+    elements      = alternation *c-wsp
+    c-wsp         = WSP / (c-nl WSP)
+    c-nl          = comment / CRLF
+                        ; 注释或者新行
+    comment       = ";" *(WSP / VCHART) CRLF
+    alternation   = concatenation
+                    *(*c-wsp "/" *c-wsp concatenation)
+    concatenation = repetition *(1*c-wsp repetition)
+    repetition    = [repeat] element
+    repeat        = 1*DIGIT / (*DIGIT "*" *DIGIT)
+    element       = rulename / group / option /
+                    char-val / num-val / prose-val
+    group         = "(" *c-wsp alternation *c-wsp ")"
+    option        = "[" *c-wsp alternation *c-wsp "]"
+    char-val      = DQUOTE *(%x20-21/%x23-7E) DQUOTE
+                        ; 包裹 SP 和 VCHART 的字符串，不包行 DQUOTE
+    num-val       = "%" (bin-val / dec-val /hex-val)
+    bin-val       = "b" 1*BIT
+                    [ 1*("." 1*BIT) / ["-" 1*BIT] ]
+                        ; 一些列连接的比特值或者单个 ONEOF 区间
+    dec-val       = "d" 1*DIGIT
+                    [ 1*("." 1*HEXDIG) / ("-" 1*DIGIT) ]
+    hex-val       = "x" 1*HEXDIG
+                    [ 1*("." 1*HEXDIG) / ("-" 1*HEXDIGIT) ]
+    prose-val     = "<" *(%x20-3D / %x3F-7E) ">"
+                        ; 括号包裹起来的字符串不需要角括号散文描述
+                        ; 作为最后的排序手段
+```
 
 
 
