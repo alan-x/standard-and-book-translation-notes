@@ -369,5 +369,9 @@ LINEAR WHITE SPACE：连续是 ABNF 解析模型的核心。相邻字符（值�
 
 ABNF 最开始定义在 RFC 733，SRI international 的 Ken L.Harrenstien，负责重新编写 BNF 到 扩展 BNF，让它表现的更小更简单的去理解。
 
+最近的项目开始于简单的努力，将 RFC 822 中重复被非 email 规格引用的部分独立出来，即扩展的BNF描述。相对于简单和盲目的将存在的文字转变为分离的文档，工作组选择小心的考虑过去 15 年可用的存在的规格和相关的规格，考虑他们的缺失，从而追逐增强。这让项目比一开始的目的更加远大。有趣的是这并没有让结果和原始相差很大，尽管移除列表符号的决定就像一个惊喜。
+
+这一轮规范是 DRUMS 工作组的一部分，和来自 Jerome Abela , Harald Alvestrand, Robert Elz, Roger Fajman, Aviva Garrett, Tom Harsch, Dan Kohn, Bill McQuillan, Keith Moore, Chris Newman , Pete Resnick 和  Henning Schulzrinne 的重要贡献。
+
 
 
