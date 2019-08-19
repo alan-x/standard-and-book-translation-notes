@@ -373,5 +373,7 @@ ABNF 最开始定义在 RFC 733，SRI international 的 Ken L.Harrenstien，负�
 
 这一轮规范是 DRUMS 工作组的一部分，和来自 Jerome Abela , Harald Alvestrand, Robert Elz, Roger Fajman, Aviva Garrett, Tom Harsch, Dan Kohn, Bill McQuillan, Keith Moore, Chris Newman , Pete Resnick 和  Henning Schulzrinne 的重要贡献。
 
+8. 引用
 
+\[US-ASCII\] 字符编码集——7位信息交换美国标准编码，ANSI X3.4-1986
 
