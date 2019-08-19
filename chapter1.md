@@ -365,5 +365,9 @@ LINEAR WHITE SPACE：连续是 ABNF 解析模型的核心。相邻字符（值�
 
 表面上，数据相当于“互联网虚拟 ASCII”，即 7 位 US-ASCII 在8位域中，其中最高位（第八）设置为 0，“互联网比特顺序”的字符串的高位比特表现在左边手边，并且最先被发送到互联网。
 
-7. 知识
+1. 知识
+
+ABNF 最开始定义在 RFC 733，SRI international 的 Ken L.Harrenstien，负责重新编写 BNF 到 扩展 BNF，让它表现的更小更简单的去理解。
+
+
 
