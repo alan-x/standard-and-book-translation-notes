@@ -125,7 +125,7 @@ rulename    = %d97.98.99
 
 将外部编码从语法中分离是为了可以在不同编码环境使用相同语法。
 
-1. 操作符
+### 3. 操作符
 
 3.1 连续
 
@@ -294,7 +294,7 @@ LINEAR WHITE SPACE：连续是 ABNF 解析模型的核心。相邻字符（值�
 
 再次声明，推荐使用分组操作符可以让连接更明确。
 
-1. 使用 ABNF 定义 ABNF
+### 4. 使用 ABNF 定义 ABNF
 
 这里的语法使用 附录A（核心）提供的规则。
 
@@ -334,11 +334,11 @@ LINEAR WHITE SPACE：连续是 ABNF 解析模型的核心。相邻字符（值�
                         ; 作为最后的排序手段
 ```
 
-1. 安全考虑
+### 5. 安全考虑
 
 可以确认安全和这个文档无关。
 
-1. 附录 A - 核心
+### 6. 附录 A - 核心
 
 确认的基本规则是大写的，比如 SP，HTAB，CRLF、DIGIT、ALPHA、etc。
 
@@ -365,7 +365,7 @@ LINEAR WHITE SPACE：连续是 ABNF 解析模型的核心。相邻字符（值�
 
 表面上，数据相当于“互联网虚拟 ASCII”，即 7 位 US-ASCII 在8位域中，其中最高位（第八）设置为 0，“互联网比特顺序”的字符串的高位比特表现在左边手边，并且最先被发送到互联网。
 
-1. 知识
+### 7. 知识
 
 ABNF 最开始定义在 RFC 733，SRI international 的 Ken L.Harrenstien，负责重新编写 BNF 到 扩展 BNF，让它表现的更小更简单的去理解。
 
@@ -373,7 +373,13 @@ ABNF 最开始定义在 RFC 733，SRI international 的 Ken L.Harrenstien，负�
 
 这一轮规范是 DRUMS 工作组的一部分，和来自 Jerome Abela , Harald Alvestrand, Robert Elz, Roger Fajman, Aviva Garrett, Tom Harsch, Dan Kohn, Bill McQuillan, Keith Moore, Chris Newman , Pete Resnick 和  Henning Schulzrinne 的重要贡献。
 
-8. 引用
+### 8. 引用
 
-\[US-ASCII\] 字符编码集——7位信息交换美国标准编码，ANSI X3.4-1986
+\[US-ASCII\] 字符编码集——7位信息交换美国标准编码，ANSI X3.4-1986。
+
+\[RFC733\] Crocker, D., Vittal, J., Pogran, K., and D. Henderson，"ARPA 网络文字信息标准格式"，RFC 733，十一月，1977。
+
+\[RFC822\]  Crocker, D.，“ARPA 网络文字信息标准格式”，STD 11，RFC 822，八月，1982。
+
+
 
