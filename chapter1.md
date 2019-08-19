@@ -334,5 +334,32 @@ LINEAR WHITE SPACE：连续是 ABNF 解析模型的核心。相邻字符（值�
                         ; 作为最后的排序手段
 ```
 
+5. 安全考虑
+
+可以确认安全和这个文档无关。
+
+6. 附录 A - 核心
+
+确认的基本规则是大写的，比如 SP，HTAB，CRLF、DIGIT、ALPHA、etc。
+
+```
+    ALPHA    = %x41-5A / %x61-7A     ; A-Z / a-z
+    BIT      = "0" / "1"
+    CHAR     = %x01-7F               ; 任意 7 位 US-ASCII 字符串，除了 NUL
+    CR       = %x0D                  ; 回车
+    CRLF     = CR LF                 ; 互联网标准新行
+    CTL      = %x00-1F / %x7F        ; 控制符
+    DIGIT    = %x30-39               ; 0-9
+    DQUOTE   = %x22                  ; "（双引号）
+    HEXDIG   = DIGIT / "A" / "B" / "C" / "D" / "E" / "F"
+    HTAB     = %x09                  ; 水平制表符
+    LF       = %x0A                  ; 换行
+    LWSP     = *(WSP / CRLF WSP)     ; 线性空白符 (过去的新行)
+    OCTET    = %x00-FF               ; 8 位数据
+    SP       = %x20                  ; 空格
+    VCHAR    = %x21-7E               ; 可见（打印）字符
+    WSP      = SP / HTAB             ; 空白符
+```
+
 
 
