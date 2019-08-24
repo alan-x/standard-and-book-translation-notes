@@ -796,6 +796,7 @@ set(name, value) 和 set(name, blobValue, filename) 方法调用的时候，必�
 用来迭代的值对是上下文对象的 entry list 的 entries，key 作为 name，value 作为 vaue。
 
 ### 6 接口 ProgressEvent
+```
 [Constructor(DOMString type, optional ProgressEventinit eventInitDict), Exposed=(Window,DedicatedWorker,SharedWorcker)]
 interface ProgressEvent : Event {
   readonly attribute boolean lenthCompotable;
@@ -808,7 +809,7 @@ dictionary ProgressEventInit : EventInit {
   unsigned long long loaded = 0;
   unsigned long long total = 0;
 };
-
+```
 事件使用 ProgressEvent 接口知识一些类型的进程。
 
 lengthComputable，loaded，和 total 属性必须返回他们初始化的时候的值。
