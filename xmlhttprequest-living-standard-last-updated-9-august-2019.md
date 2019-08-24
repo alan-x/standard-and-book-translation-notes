@@ -173,6 +173,7 @@ client = new XMLHttpRequest()
 | onloadend | loadend |
 
 下面是 XMLHttpRequest 对象单独作为属性必须支持的事件处理器（和他们相符的事件处理器事件类型）：
+
 | 事件处理器 | 事件处理器事件类型 |
 | - | - |
 | onreadystatechange | readystatechange |
