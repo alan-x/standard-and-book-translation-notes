@@ -75,7 +75,7 @@ XMLHttpRequest 对象一开始定义为 WHATWG 的 HTML 的一部分。（基于
 
 它使用 HTML 的印刷规范。[HTML]
 
-4. 接口 XMLHttpRequest
+### 4. 接口 XMLHttpRequest
 ```
 IDL
 [Exposed=(Window,DedicatedWorker,ShareWorker)]
