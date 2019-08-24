@@ -728,3 +728,138 @@ responseXML 属性必须返回执行以下步骤的结果：
 
 ### 5 接口 FormData
 
+```
+typedef (File or USVString) FormDataEntityValue;
+
+[Constructor(optional HTMLFormElement form), Exposed=(Window,Worker)]
+interface FormData {
+  void append(USVString name, USVString value);
+  void append(USVString name, Blob blobValue, optional USVString filename);
+  void delete(USVString name);
+  FormDataEntryValue? get(USVString name);
+  sequence<FormDataEntryValue> getAll(USVString name);
+  boolean has(USVString name);
+  void set(USVString name, USVString value);
+  void set(USVString name, Blob blobValue, optional USVString filename);
+  iterable<USVString, FormDataEntryValue>;
+}
+```
+
+每一个 FormData 对象都有一个关联的 entry list（一个 list 或者 entries）。它初始化为一个空的列表。
+
+一个实体由名字和值组成。
+
+为了和其他算法交互的目的，一个 entry 的文件名在值不是一个 File 对象的时候为空字符串，否则它的文件名是 entry 的 value 的 name 属性。
+
+为了使用 name，value，和可选的 filename 创建一个 entry，执行下面的步骤：
+
+1. 让 entry 为一个新的 entry。
+2. 设置 entry 的 name 为 name。
+3. 如果值是 Blob 对象而不是 File 对象，则设置 vakue 为新的 File 对象，表示相同的字节，但是 name 属性值为 blob。
+4. 如果 value 是（现在）一个 File 对象，并且给出了 filename，则设置 value 为 新的 File 对象，表示相同的字节，但是 name 属性值为 filename。
+5. 设置 entry 的值为 value。
+6. 返回 entry。
+
+FormData(form) 构造器必须执行下面的步骤：
+1. 让 fd 为新的 FormData 对象。
+2. 如果给定 form，则：
+    1. 让 list 为为 form 构造 entry 列表的结果。
+    2. 如果 list 是 null，则抛出一个“invalidStateError”的 DomException。
+    3. 设置 fd 的 entry 列表为 list。
+3. 返回 fd。
+
+appen(name, value) 和 append(name, blobValue, filename) 方法调用的时候，必须执行下面的步骤：
+1. 如果给定value，则让 value 为 value，否则让 value 为 blobValue。
+2. 让 entry 为使用 name，value，filename 创建一个实体的结果。
+3. 拼接 entry 到上下文对象的 entry list。
+
+> 这里有一个参数的名字是 value，同时又是 blobValue 的原因是因为用来编写XMLHttpRequest 编辑软件的的限制。
+
+delete(name) 方法调用的时候，必须从上下文对象的 entry list 移除所有名字为 name 的 entries。
+
+get(name) 方法调用的时候，必须返回上下文对象的 entry list 第一个名字为 name 的entry 的值，否则返回 null。
+
+getAll(name) 方法调用的时候，必须返回上下文对象的 entry list 所有名字为 name 的 entries 的值，否则返回一个空的 list。
+
+has(name) 方法调用的时候，如果上下文对象的 entry list 中有一个 entry 名字为 name，则必须返回 true，否则返回 false。
+
+set(name, value) 和 set(name, blobValue, filename) 方法调用的时候，必须执行下面的步骤：
+
+1. 如果 value 有值，让 value 为 value，否则，让 value 为 blobValue。
+2. 让 entry 为用 name，value，filename 创建一个 entry的结果。
+3. 如果上下文对象的 entry list 中有名字为 name 的 entries，则使用 entry 替换第一个 entry，并移除其他。
+4. 否则，拼接 entry 到上下文对象的 entry list。
+
+> 注意：这里有一个参数的名字是 value，同时又是 blobValue 的原因是因为用来编写XMLHttpRequest 编辑软件的的限制。
+
+用来迭代的值对是上下文对象的 entry list 的 entries，key 作为 name，value 作为 vaue。
+
+### 6 接口 ProgressEvent
+[Constructor(DOMString type, optional ProgressEventinit eventInitDict), Exposed=(Window,DedicatedWorker,SharedWorcker)]
+interface ProgressEvent : Event {
+  readonly attribute boolean lenthCompotable;
+  readonly attribute unsigned long long loaded;
+  readonly attribute unsigned long long total;
+};
+
+dictionary ProgressEventInit : EventInit {
+  boolean lengthCompitable = false;
+  unsigned long long loaded = 0;
+  unsigned long long total = 0;
+};
+
+事件使用 ProgressEvent 接口知识一些类型的进程。
+
+lengthComputable，loaded，和 total 属性必须返回他们初始化的时候的值。
+
+### 6.1 使用 Progress 接口触发事件
+
+为了在 target 上触发名为 e 的处理事件，给定 transmitted 和 length，意味着在 target 触发一个名为 e 的事件，使用 ProgressEvent，和 loaded 属性初始化 transmitted，并且如果 length 不是 0，lengthComputable 属性初始化为 true，并且 total 属性初始化为 length。
+
+### 6.2 使用 ProgressEvent 接口推荐的事件名称。
+这个章节是非规范的。
+
+使用 ProgressEvent 接口推荐的事件的 type 属性的值在下表描述。规格编辑者可以根据他们的场景自由的调整细节，尽管强烈鼓励和 WHATWG 社区讨论他们的使用，以确保熟悉这个课题的人提出建议。
+
+| type 属性值 | 描述 | 次数 | 时机 |
+| - | - | - | - |
+| loadstart | 进度开始 | 一次 | 第一 |
+| progress | 正在进行 | 一次或者多次 | loadstart 被派发之后 | 
+| error | 进度失败 | 0 或者 1 次（相互排斥） | 在 progress 被派发之后 | 
+| abort | 进度被终止 |  |  | 
+| timeout | 进度因为预定的时间过期导致终止 |  |  | 
+| load | 进度成功 |  |  | 
+| loadend | 进度停止 | 一次 | 在 error，abort，timeout，或者 load 被派发之后 | 
+
+error，abort，timeout，和 load 事件类型是相互排斥的。
+
+几乎所有的 web 平台 error，abort，timeout，和 load 事件类型都有他们的 bubbles 和 cancelable 属性初始化为 false，所以推荐所有使用 ProgressEvent 接口的事件都这么做，以保持一致性。
+
+### 6.3 安全考虑
+
+对于跨域请求有一些选择，比如，定义在 Fetch 标准的 CORS 协议需要在使用 ProgressEvent 接口的事件被派发之前使用，因为信息（比如，大小）将会显示无法获取。
+
+### 6.4 栗子
+
+在这个栗子中的 XMLHttpRequest，结合了在前面章节定义的钙奶呢，并且 HTML progress 元素被用来显示获取一个资源的进度。
+```
+<!DOCTYPE html>
+<title>Waiting for Magical Unicorns</title>
+<progress id=p></progress>
+<script>
+  var progressBar = document.getElementById("p"),
+      client = new XMLHttpRequest()
+  client.open("GET", "magical-unicorns")
+  client.onprogress = function(pe) {
+    if(pe.lengthComputable) {
+      progressBar.max = pe.total
+      progressBar.value = pe.loaded
+    }
+  }
+  client.onloadend = function(pe) {
+    progressBar.value = pe.loaded
+  }
+  client.send()
+</script>
+```
+完整的可工作的代码当然会更加的精细，并处理更多常见，比如网络错误或者用户终止请求。
