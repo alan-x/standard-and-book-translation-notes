@@ -249,8 +249,8 @@ open(method, url) 和 open(method, url, async, username, password) 方法调用�
   - 设置响应对象为空。
 > 注意：覆盖 MIME 类型不是在这里被覆盖，overrideMimeType() 方法可以在 open() 方法调用前调用。
 13. 如果状态不是 opended，那么：
-  1. 设置状态为 opended。
-  2. 在 this 上触发 readystatechange 事件。
+    1. 设置状态为 opended。
+    2. 在 this 上触发 readystatechange 事件。
 > 注意：这里有两个 open() 方法定义的原因是 XMLHttpRequest 标准编写工具的限制。
 
 4.5.2 setRequestHeader() 方法
@@ -271,6 +271,7 @@ setRequestHeader(name, value)方法必须执行一下步骤：
     > 注意：一个空比特序列表示一个空的头值。
   5. 如果 name 是一个禁止头部名，终止这些步骤。
   6. 在作者请求头部中绑定 name/value
+  
   ```
   例子
   一些简单的代码示范了设置相同的头部两次会发生什么。
@@ -284,7 +285,6 @@ setRequestHeader(name, value)方法必须执行一下步骤：
   // …导致发送下面的头部:
   // X-Test: one, two
   ```
-
 
 ### 4.5.3 timeout 属性
 ```
