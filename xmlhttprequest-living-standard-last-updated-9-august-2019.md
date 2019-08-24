@@ -344,104 +344,99 @@ send(body)方法必须执行下面的步骤：
 2. 如果 send() 标志被设置，则抛出“InvalidStateError”的 DOMException。
 3. 如果请求方法是 GET 或者 HEAD，设置 body 为 null。
 4. 如果 body 不是 null，则：
-  1. 让 extractedContentType 为 null。
-  2. 如果 body 是一个 Document，那么设置请求体为 body，序列化，转化成 Unicode 和 UTF-8 编码。
-  3. 否则，设置请求体和 extractedContentType 为 body 的解析结果
-  4. 如果用户请求头部包含`Content-Type`，则：
-    1. 如果 body 是一个 Document 或者一个 USVString，那么：
-      1. 让 originalAuthorContentType 为作者请求头部中名字为字节大小写不敏感的`Content-Type`的值，
-      2. 让 contentTypeRecord 为 originalAuthorContentType 的转化结果。
-      3. 如果 contentTypeRecord 没有失败，contentTypeRecord 的参数 charset 存在，并且参数 charset 不是一个 ASCII 大小写不敏感的“UTF-8”，则：
-        1. 设置 contentTypeRecord 的参数 carset 为“UTF-8”。
-        2. 让 newContentTypeSerialized 为序列化 contentTypeRecord 的结果
-        3. 设置`Content-Type`/newContentTypeSerialized 到作者请求头部
-  5. 否则：
-    1. 如果 body 是一个 HTMl docuemnt，设置`Content-Type`/`text/html;charset=UTF-8`到作者请求头部。
-    2. 否则，如果 body 是一个 XML document，设置`Content-Type`/`application/xml;charset=UTF-8`到作者请求头部。
-    3. 否则，如果 extractedContentType 不是 null，设置 `Content-Type`/extractedContentType 到作者请求头部。
+    1. 让 extractedContentType 为 null。
+    2. 如果 body 是一个 Document，那么设置请求体为 body，序列化，转化成 Unicode 和 UTF-8 编码。
+    3. 否则，设置请求体和 extractedContentType 为 body 的解析结果
+    4. 如果用户请求头部包含`Content-Type`，则：
+        1. 如果 body 是一个 Document 或者一个 USVString，那么：
+            1. 让 originalAuthorContentType 为作者请求头部中名字为字节大小写不敏感的`Content-Type`的值，
+            2. 让 contentTypeRecord 为 originalAuthorContentType 的转化结果。
+            3. 如果 contentTypeRecord 没有失败，contentTypeRecord 的参数 charset 存在，并且参数 charset 不是一个 ASCII 大小写不敏感的“UTF-8”，则：
+                1. 设置 contentTypeRecord 的参数 carset 为“UTF-8”。
+                2. 让 newContentTypeSerialized 为序列化 contentTypeRecord 的结果
+                3. 设置`Content-Type`/newContentTypeSerialized 到作者请求头部
+    5. 否则：
+      1. 如果 body 是一个 HTMl docuemnt，设置`Content-Type`/`text/html;charset=UTF-8`到作者请求头部。
+      2. 否则，如果 body 是一个 XML document，设置`Content-Type`/`application/xml;charset=UTF-8`到作者请求头部。
+      3. 否则，如果 extractedContentType 不是 null，设置 `Content-Type`/extractedContentType 到作者请求头部。
 5. 如果一个或者多个事件监听器被注册到关联的 XMLHttpRequestUpload 对象，然后设置请求监听器的标志。
 6. 让 req 为一个新的请求，初始化如下：
-  方法
-    请求方法
-  url 
-    请求 url
-  头部列表
-    作者请求头部
-  不安全请求位
-    设置
-  请求体
-    请求体
-  客户端
-    上下文对象的相关设置对象
-  同步标志
-    如果同步标志被设置，就设置。
-  模式
-    “cors”
-  使用 CORS 预检标志
-    如果上传监听器标志被设置，就设置
-  认证模式
-    如果 withCredentials 属性值为 true，则是“include”，否则就是“same-origin”。
-  使用 URL 认证标志
-    如果请求 URL 的 username 和 password 都不为空，就设置。
+    - 方法：请求方法
+    - url：请求 url
+    - 头部列表：作者请求头部
+    - 不安全请求位：设置
+    - 请求体：请求体
+    - 客户端：上下文对象的相关设置对象
+    - 同步标志：如果同步标志被设置，就设置。
+    - 模式：“cors”
+    - 使用 CORS 预检标志：如果上传监听器标志被设置，就设置
+    - 认证模式：如果 withCredentials 属性值为 true，则是“include”，否则就是“same-origin”。
+    - 使用 URL 认证标志：如果请求 URL 的 username 和 password 都不为空，就设置。
 7. 不设置上传完成标志
 8. 不设置超时标志
 9. 如果 req 的请求体是 null， 设置上传完成标志。
 10. 设置 send() 标志。
 11. 如果同步标志没有设置，则：
-  1. 以 0  和 0 在 this 上触发一个名为 loadstart 的处理事件
-  2. 如果上传完成标志没有设置，并且上传监听标志被设置，那么就使用 0  和 req 的请求体的总字节数在 this 上触发名为 loadstart 的处理事件。
-  3. 如果*状态*是 opened 或者 send() 标志没有被设置，则返回。
-  4. 获取 req，按下面每一步来处理网络任务源上的任务队列。
-  同步运行以下步骤：
-    1. 等待直到 req 的完成标志被设置或者
-      1. 当步骤开始到timeout 属性值毫秒数过去
-      2. 当 timeout 属性值不是 0。
-    2. 如果 req 的完成标志未设置，则设置超时标志并终止获取。
-  为了处理请求的请求体，运行以下步骤：
-    1. 如果大约 50ms 内这些步骤调用过，终止这些步骤
-    2. 如果上传监听标志被设置，则使用请求体的以传输字节数和请求体的总字节数在 this 的 XMLHttpRequestUpload 对象触发一个名为 progress 的处理事件
-  >  注意：这些步骤只会在有新的字节被传输的时候触发。
-  为了处理请求体结束请求，运行下面这些步骤：
-    1. 设置上传完成标志。
-    2. 如果上传监听标志位未设置，则终止这些步骤。
-    3. 让 transmitted 为请求体的传输字节数。
-    4. 让 length 为请求体的总字节数。
-    5. 使用 transmitted 和 length 在 this 的 XMLHttpRequestUpload 对象上触发名为 progress 的处理事件
-    6. 使用 transmitted 和 length 在 this 的 XMLHttpRequestUpload 对象上触发名为 load 的处理事件
-    7. 使用 transmitted 和 length 在 this 的 XMLHttpRequestUpload 对象上触发名为 loaded 的处理事件
-  为了处理响应，执行以下步骤：
-    1. 设置 response 为响应。
-    2. 为 response 处理错误。
-    3. 如果 response 是一个网络错误，返回。
-    4. 设置*状态*为 headers received。
-    5. 在 this 上触发名为 readystatechange 的事件。
-    6. 如果状态不是 headers receive，那么就返回。
-    7. response 的请求体是 null，那么执行处理响应体并返回。
-    8. 让 reader 为从 response 请求体流中获取一个 reader 的结果。
-      > 这个操作不会抛出一个异常
-    9. 让 read 为使用 reader 从请求体流中读取串的结果
-      当 read 被一个 done 属性是 false 并且 value 属性是一个 Uint*Array 的对象满足的时候，一遍又一遍的执行下面的步骤：
-      1. 拼接 value 属性到接受到的比特。
-      2. 如果从调用大约50ms，则终止这些步骤
-      3. 如果*状态*是 headers received，那么设置*状态*为 loading。
-      4. 在 this 上触发名为 readystatechange 到事件。
-      > 注意：web 兼容性是 readystatechange 比 state 改变触发更经常的原因。
-      5. 使用 response 的响应体的传输比特和响应体的全部比特在 this 上触发名为 progress 的处理事件。
-      >  注意：这些步骤只会在有新的字节被传输的时候触发。
-      当 ready 被一个 done 属性为 true 的对象满足的时候，为 response 执行处理响应体。
+    1. 以 0  和 0 在 this 上触发一个名为 loadstart 的处理事件
+    2. 如果上传完成标志没有设置，并且上传监听标志被设置，那么就使用 0  和 req 的请求体的总字节数在 this 上触发名为 loadstart 的处理事件。
+    3. 如果*状态*是 opened 或者 send() 标志没有被设置，则返回。
+    4. 获取 req，按下面每一步来处理网络任务源上的任务队列。
+    
+    同步运行以下步骤：
+      1. 等待直到 req 的完成标志被设置或者
+          1. 当步骤开始到timeout 属性值毫秒数过去
+          2. 当 timeout 属性值不是 0。
+      2. 如果 req 的完成标志未设置，则设置超时标志并终止获取。
+      
+    为了处理请求的请求体，运行以下步骤：
+      1. 如果大约 50ms 内这些步骤调用过，终止这些步骤
+      2. 如果上传监听标志被设置，则使用请求体的以传输字节数和请求体的总字节数在 this 的 XMLHttpRequestUpload 对象触发一个名为 progress 的处理事件
+    >  注意：这些步骤只会在有新的字节被传输的时候触发。
 
-      当 read 被一个异常拒绝的时候，为 response 执行错误处理。
+    为了处理请求体结束请求，运行下面这些步骤：
+      1. 设置上传完成标志。
+      2. 如果上传监听标志位未设置，则终止这些步骤。
+      3. 让 transmitted 为请求体的传输字节数。
+      4. 让 length 为请求体的总字节数。
+      5. 使用 transmitted 和 length 在 this 的 XMLHttpRequestUpload 对象上触发名为 progress 的处理事件
+      6. 使用 transmitted 和 length 在 this 的 XMLHttpRequestUpload 对象上触发名为 load 的处理事件
+      7. 使用 transmitted 和 length 在 this 的 XMLHttpRequestUpload 对象上触发名为 loaded 的处理事件
+
+    为了处理响应，执行以下步骤：
+      1. 设置 response 为响应。
+      2. 为 response 处理错误。
+      3. 如果 response 是一个网络错误，返回。
+      4. 设置*状态*为 headers received。
+      5. 在 this 上触发名为 readystatechange 的事件。
+      6. 如果状态不是 headers receive，那么就返回。
+      7. response 的请求体是 null，那么执行处理响应体并返回。
+      8. 让 reader 为从 response 请求体流中获取一个 reader 的结果。
+        > 这个操作不会抛出一个异常
+      9. 让 read 为使用 reader 从请求体流中读取串的结果
+        当 read 被一个 done 属性是 false 并且 value 属性是一个 Uint*Array 的对象满足的时候，一遍又一遍的执行下面的步骤：
+          1. 拼接 value 属性到接受到的比特。
+          2. 如果从调用大约50ms，则终止这些步骤
+          3. 如果*状态*是 headers received，那么设置*状态*为 loading。
+          4. 在 this 上触发名为 readystatechange 到事件。
+          > 注意：web 兼容性是 readystatechange 比 state 改变触发更经常的原因。
+          5. 使用 response 的响应体的传输比特和响应体的全部比特在 this 上触发名为 progress 的处理事件。
+          >  注意：这些步骤只会在有新的字节被传输的时候触发。
+          当 ready 被一个 done 属性为 true 的对象满足的时候，为 response 执行处理响应体。
+
+        当 read 被一个异常拒绝的时候，为 response 执行错误处理。
+
 12. 否则，如果同步标志被设置，执行这些步骤：
-  1. 如果上下文对象的相关设置对象又一个负责的 document，并且该 document 不允许使用“同步的 xhr”，则为一个网络错误执行处理请求体结束并返回。
-  2. 让 response 为 req 获取的结果。
-    如果 timeout 属性值不是 0，并且它没有在 timeout 指定的毫秒数内返回，则设置超时标志并终止请求。
-  3. 如果 response 的响应体不是 null， 则执行处理响应体结束并返回。
-  4. 让 reader 为从 response 响应体中获取流的结果。
-  > 这个操作不会抛出一个异常
-  5. 让 promise 为使用 reader 从 response 的响应体流读取所有字节的结果
-  6. 等待 promise 转化成 fullfilled 或者 rejected。
-  7. 如果 promise 是 fullfilled 并伴随着 bytes，则拼接 bytes 到接收到的比特中。
-  8. 为 response 执行处理响应结束
+    1. 如果上下文对象的相关设置对象又一个负责的 document，并且该 document 不允许使用“同步的 xhr”，则为一个网络错误执行处理请求体结束并返回。
+    2. 让 response 为 req 获取的结果。
+      如果 timeout 属性值不是 0，并且它没有在 timeout 指定的毫秒数内返回，则设置超时标志并终止请求。
+    3. 如果 response 的响应体不是 null， 则执行处理响应体结束并返回。
+    4. 让 reader 为从 response 响应体中获取流的结果。
+    > 这个操作不会抛出一个异常
+    5. 让 promise 为使用 reader 从 response 的响应体流读取所有字节的结果
+    6. 等待 promise 转化成 fullfilled 或者 rejected。
+    7. 如果 promise 是 fullfilled 并伴随着 bytes，则拼接 bytes 到接收到的比特中。
+    8. 为 response 执行处理响应结束
+    
 为 response 处理响应体结束，执行下面的步骤：
   1. 如果同步标志被设置，则设置 response 为 response。
   2. 为 response 处理错误
@@ -455,16 +450,19 @@ send(body)方法必须执行下面的步骤：
   10. 在 this 上触发名为 readystatechange 事件。
   11. 使用 transmitted 和 length 在 this 上触发名为 load 的处理事件。
   12. 使用 transmitted 和 length 在 this 上触发名为 loaded 的处理事件。
+
 为 response 处理错误执行以下步骤：
   1. 如果 send() 未设置，返回。
   2. 如果超时标志被设置，则为事件 timeout 执行请求错误步骤和异常“TimeoutException”的 DOMException。
   3. 如果 response 是一个网络错误，则为事件 error 执行请求错误步骤和异常“NetworkError”的 DOMException。
   4. 否则，如果 response 的 请求体流是错误的，那么：
-    1. 设置*状态*为 done。
-    2. 不设置 send() 标志。
-    3. 设置 response 为一个网络错误。
+      1. 设置*状态*为 done。
+      2. 不设置 send() 标志。
+      3. 设置 response 为一个网络错误。
   5. 否则，如果 response 放弃标志被设置，则为事件 abort 执行请求失败步骤和异常“AbortError”的 DOMException。
+
 事件 event 的请求错误步骤和可选的异常 exception 如下：
+
 1. 设置*状态*为 done。
 2. 不设置 send() 标志。
 3. 设置 response 为网络错误。
@@ -472,10 +470,10 @@ send(body)方法必须执行下面的步骤：
 5. 在 this 上触发名为 readystatechange 的事件。
 > 注意：此时很明显，同步标记未被设置。
 6. 如果上传完成标志为被设置，则：
-  1. 设置上传完成请求。
-  2. 如果上传监听标志被设置，则：
-    1. 使用 0 和 0 在 this 的 XMLHttpRequestupload 对象上触发名为 event 的处理事件。
-    2. 使用 0 和 0 在 this 的 XMLHttpRequestupload 对象上触发名为 loadend 的处理事件。
+    1. 设置上传完成请求。
+    2. 如果上传监听标志被设置，则：
+        1. 使用 0 和 0 在 this 的 XMLHttpRequestupload 对象上触发名为 event 的处理事件。
+        2. 使用 0 和 0 在 this 的 XMLHttpRequestupload 对象上触发名为 loadend 的处理事件。
 7. 使用 0 和 0 在 this 上触发名为 event 的处理事件。
 8. 使用 0 和 0 在 this 上触发名为 loadend 的处理事件。
 
