@@ -712,6 +712,7 @@ responseXML 属性必须返回执行以下步骤的结果：
 这个章节是非规范的。
 
 下面的事件在 XMLHttpResponse 或者 XMLHttpRequestupload 对象：
+
 | 事件名 | 接口 | 派发时机 |
 | - | - | - |
 | readystatechange | Event | readyState 属性改变值，期待当他变成 UNSENT 的时候 |
