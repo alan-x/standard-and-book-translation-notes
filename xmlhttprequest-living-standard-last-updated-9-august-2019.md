@@ -184,6 +184,7 @@ client = new XMLHttpRequest()
       返回客户端的[状态]()
 ```
 readyState 属性获取器必须返回下面表格第二列的值，第一列则是上下文对象的状态值：
+
 | | | |
 | - | - | - |
 | unsent | UNSENT(数字值 0) | 对象被构造了 |
