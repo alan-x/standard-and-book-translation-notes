@@ -1002,15 +1002,68 @@ Cross-Origin-Resource-Policy     = %s"same-origin" / %s"same-site" ; case-sensit
 14. 返回 response
 
 ### 4.7 CORS 预获取
-1. 
-2. 
-3. 
-4. 
-5. 
-6. 
-7. 
+使用 request 执行一个 CORS 预检请求，执行下面步骤：
+1. 让 preflight 为新的方法是`OPTIONS`的 request，URL 是 request 的当前 URL，initiator 是 request 的 initiator，destination 是 request 的 destination，origin 是 request 的 origin，referrer 是 request 的 referrer，referrer policy 是 request 的 referrer policy，mode 是“cors”，tainted origin 标志是 request 的 tainted origin 标志。
+2. 在 preflight 的头部列表中拼接`Access-Control-Request-Method`到 reqeust 的 method
+3. 让 headers 为 request 的头部列表的 CORS 不安全请求头部名字
+4. 如果 headers 不是空，则：
+    1. 让 value 为 headers 中每一项用`,`分割
+    2. 在 preflight 的头部列表中拼接`Access-Control-Request-Headers`到 value
+5. 让 response 为使用 preflight 和 CORS 标志执行一个 HTTP 网路或者缓存获取的结果
+6. 如果 request 的 CORS 检查返回成功并且 response 的 status 是一个 ok 状态，则：
+    1. 给定`Access-Control-Allow-Methods`和 response 的头部列表，让 methods 为解析头部列表值的结果
+    2. 给定`Access-Control-Allow-Headers`和 response 的头部列表，让 headerNames 为解析头部列表值的结果
+    3. 如果 methods 或者 headerNames 是失败，则返回一个网络错误
+    4. 如果 methods 是 null，并且 request 的 use-CORS-preflight 标志设置，则设置 methods 为一个新的列表，并包含 request 的方法
+    5. 如果 request 的 method 不再 methods 中，request 的 method 不是一个 CORS 安全方法，并且 request 的 credentials mode 是“include”或者 methods 不包含`*`，则返回一个网络错误
+    6. 如果 request 的头部列表的名字中有一个是 CORS 非通配符头部名字，并且不是字节大小写不敏感的匹配 headerNames 中的每一项，则返回一个网络错误
+    7. 使用 unsafeName 遍历 CORS 不安全请求头部名字和 request 的头部列表，如果 unsafeName 不是字节大小写不敏感命中 headerNames 中的一项并且 request 的 credentials mode 是“include”或者 headerNames 不包含`*`，则返回一个网络错误
+    8. 给定`Access-Control-Max-Age`和 response 的头部列表，让 max-age 为解析头部列表值的结果
+    9. 如果 max-age 是失败或者 null，则设置 max-age 为 0
+    10. 如果 max-age 大于最大限制，则设置 max-age 为最大限制
+    11. 如果用户代理不提供缓存，则返回 response
+    12. 使用 method 遍历 methods，使用 request，如果某一个是一个缓存入口命中方法，设置命中入口的 max-age 为 max-age
+    13. 使用 method 遍历 methods，使用 request，如果某一个不是一个缓存入口命中方法，使用 request，max-age，method，和 null 创建一个新的缓存入口
+    14. 使用 headerName 遍历 headerNames，如果某一个是头部名称缓存入口命中，则设置命中入口的 max-age 为 max-age
+    15. 使用 headerName 遍历 headerNames，如果某一个不是头部名称缓存入口命中，使用 request，max-age，null，和 headerName 创建一个新的缓存入口
+    16. 返回 response
+7. 否则，返回一个网路错误
 
 ### 4.8 CORS 预缓存
+用户代理有一个关联的 CORS 预请求缓存，一个 CORS 预请求缓存是一个缓存条目的列表
+
+一个缓存条目由下面组成：
+- 序列化的 origin（一个字节序列）
+- URL（一个 URL）
+- max-age（一个秒数）
+- credentials（一个 boolean）
+- method（null，`*`，或者一个 method）
+- 头部名（null，`*`，或者一个头部名）
+
+缓存条目必须在从存储草他们 max-age 域指定的秒数过去之后移除。缓存条目可能在那一刻到来之前移除。
+
+创建一个缓存实体，给定 request，method，和 headerName，执行下面步骤
+1. 让 entry 为一个缓存实体，如下初始化
+    - serialized origin：使用 request 序列化 request origin 的结果
+    - URL：request 的当前 URL
+    - max-age：max-age
+    - credentials：如果 request 的 credentials mode 是“include”，则是 true，否则就是 false
+    - method：method
+    - header name：headerName
+2. 拼接 entry 到用户代理的 CORS 预请求缓存
+
+
+清理一个缓存条目，给定一个 request，移除所有用户代理的 CORS 预请求缓存中序列化 origin 为 request 序列化 request orign 的结果，URL 为 request 当前 URL 的条目。
+
+request 命中一个缓存实体 entry，entry 的序列化 origin 是 request 序列化 request origin 的结果，entry 的 URL 是 request 当前 URL，并且下面一个条件为真：
+- entry 的 credentials 是 true
+- entry 的 credentials 是 false 并且 request 的 credentials mode 不是“include”
+
+request 命中一个方法缓存实体 method，当用户代理的 CORS 预请求缓存中的某一项是缓存命中并且 method 是 method 或者`*`
+request 命中一个头部名缓存实体 method，当用户代理的 CORS 预请求缓存中的某一项是缓存命中并且下面一个条件为真：
+- 它的头部名称是字节大小写不敏感命中 headerName
+- 它的头部名称是`*`并且 headerName 不是一个 CORS 通配符请求头部名字。
+
 ### 4.9 CORS 检查
 为一个 request 和 response 执行一个 CORS 检查，执行下面步骤：
 1. 让 origin 为从 response 头部列表获取`Access-Control-Allow-Origin`的结果
