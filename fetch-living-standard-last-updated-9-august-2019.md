@@ -989,16 +989,59 @@ Cross-Origin-Resource-Policy     = %s"same-origin" / %s"same-site" ; case-sensit
 1. 如果 credentials 标志被设置，则设置 credentials 为 true，否则为 false
 2. 让 response 为 null
 3. 根据 request 的 mode 执行：
+    - “websocket”：给定 request 当前的 URL，让 connection 为获取一个 WebSocket 链接的结果
+    - 否则，给定 request 当前 URL 的 origin 和 credentials，让 connection 为获取一个链接的结果
 4. 执行这些步骤，但是在进行中的获取终止的时候放弃：
+    1. 如果 connection 是失败，则返回一个网络错误
+    2. 如果 connection 不是一个 HTTP/2 链接，request 的 body 不是 null，并且 request 的 body 的 source 是 null，则拼接`Transfer=Encoding`/`chunked`到 request 的请求头部
+    3. 设置 response 为使用 reqeust 生成一个基于 connection 的 HTTP request，并使用下列警告
+        - 遵循 HTTP 的相关需求
+        - 等待所有的头部被传输
+        - 任何响应的状态在 100-199 闭区间内，但不是 101，都忽略
+    如果 request 的头部列表包含`Transfer-Encoding`/`chunked`，并且 response 是通过 HTTP/1.0 或者更旧的协议传输，则返回一个网络错误
+    如果 HTTP request 生成一个 TLS 客户端证书弹窗，则：
+        1. 如果 request 的 window 是一个环境设置对象，在 request 的 window 生成一个弹窗
+        2. 否则，返回一个网络错误
+    如果 response 是从 HTTPS 取回，设置 HTTPS 状态为“deprecated”或者“modern”
+    为 request 传输 body
 5. 如果放弃，则：
+    1. 让 aborted 为终止的放弃标志
+    2. 如果 connection 使用 HTTP/2，则传输一个 RST_STREAM 帧
+    3. 如果 aborted 被设置，则返回一个放弃网络错误
+    4. 返回网络错误
 6. 让 highWaterMark 用户选择的，为非负的，非 NAN 的数字，
 7. 让 sizeAlgorithm 是一个散发，接收一个 chunk 对象，并返回一个用户代理选择的非负的，非 NAN 的，非无穷数。
 8. 让 pull 为一个 action，如果它被挂起，则恢复进行中的获取
 9. 让 cancel 为一个 acton，它终止进行中的获取，通过设置 aborted 标志。
 10. 让 stream 为使用 highWaterMark，sizeAlgorithm，pull，cancel 构造一个 ReadableStrem 对象的结果
-11. 运行这些步骤，但是在进行中的获取终止的时候放弃
-12. 如果放弃了，则
+11. 运行这些步骤，但是在进行中的获取终止的时候放弃：
+    1. 设置 response 的 body 为一个新的 body，它的 stream 是 stream
+    2. 如果 response 有一个负荷正文长度，则设置 response body 的总字节为负荷正文长度
+    3. 如果 response 不是一个网络错误，并且 reqeust 的 cache mode 不是“no-store”，为 request 更新 HTTP 缓存中的 response
+    4. 如果 credentials 标志被设置，并且用户代理没有设置去堵塞 request 的 cookie，则在 request 的当前 URL 和 response 头部列表每一个名字字节大小写不敏感命中`Set-Cookie`的 header 的 value 上执行“set-cookie-string”转化算法，如果存在。
+12. 如果放弃了，则：
+    1. 让 aborted 为终止的放弃标志
+    2. 如果 aborted 被设置，则设置 response 的放弃标志
+    3. 返回 response
 13. 同步执行这些步骤
+    1. 执行这些步骤，但是在进行中的获取终止的时候放弃：
+        1. 如果为真：
+            1. 让 bytes 为传输的字节
+            2. 使用 bytes 的长度增加 response 的 body 的传输字节
+            3. 让 codings 为给定`Content-Encoding`和 response 头部列表解析头部列表值的结果
+            4. 设置 bytes 为给定 codings 和 bytes 处理内容编码的结果
+            5. 如果 bytes 失败，则终止进行中的获取
+            6. 入队一个 Uint8Array 对象包裹一个 ArrayBuffer 包含 bytes 到 stream。如果抛出一个异常，终止进行中的获取，使用这个异常 error stream。
+            7. 如果 stream 不需要更多的数据，并且 request 的同步标志是 unset，请求用户代理挂起进行中的获取
+        2. 否则，如果 response 比特传输的信息正文正常完成并且 stream 是可读的，则关闭 stream 并放弃这些同步步骤。
+    2. 如果放弃：
+        1. 让 aborted 为终止的放弃标志：
+        2. 如果 aborted 被设置，则
+            1. 设置 response 的 aborted 标志
+            2. 如果 stream 是可读的，使用“AbortError”DomException来 error stream
+        3. 否则，如果 stream 是可读的，使用一个 TypeError 来 error stream
+        4. 如果 connection 使用 HTTP/2，则传输一个 RST——STREAM 帧
+        5. 否则，用户代理应该在它影响到性能的时候关闭连接
 14. 返回 response
 
 ### 4.7 CORS 预获取
