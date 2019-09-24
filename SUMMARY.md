@@ -7,4 +7,5 @@
 * [Fetch-Living Standard - Last Updated 9 August 2019](fetch-living-standard-last-updated-9-august-2019.md)
 * [RCF 2397](rcf-2397.md)
 * [RFC 6454](rfc-6454.md)
+* [Cross-Origin Resource Sharing](cross-origin-resource-sharing.md)
 
