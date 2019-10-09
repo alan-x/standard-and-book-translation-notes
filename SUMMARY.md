@@ -10,4 +10,5 @@
 * [Cross-Origin Resource Sharing](cross-origin-resource-sharing.md)
 * [RFC 2119](key-words-for-use-in-rfcs-to-indicate-requirement-levels.md)
 * [File API](file-api.md)
+* [RFC 7230](rfc-7230.md)
 
