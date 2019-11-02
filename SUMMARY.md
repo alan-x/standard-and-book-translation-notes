@@ -14,6 +14,6 @@
 * [RFC 7231](rfc-7231.md)
 * [RFC 7232](rfc-7232.md)
 * [RFC 7233](rfc-7233.md)
-* RFC 7234
+* [RFC 7234](rfc-7234.md)
 * RFC 7235
 
