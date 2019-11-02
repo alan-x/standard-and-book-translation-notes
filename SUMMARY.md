@@ -12,4 +12,8 @@
 * [File API](file-api.md)
 * [RFC 7230](rfc-7230.md)
 * [RFC 7231](rfc-7231.md)
+* [RFC 7232](rfc-7232.md)
+* [RFC 7233](rfc-7233.md)
+* RFC 7234
+* RFC 7235
 
