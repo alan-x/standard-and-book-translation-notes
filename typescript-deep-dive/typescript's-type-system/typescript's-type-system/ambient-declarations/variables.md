@@ -1,12 +1,13 @@
+[已校对]
 # 变量
 
-比如告诉 TypeScript 关于[`process`变量]()，你可以这么做：
+比如告诉 TypeScript 关于[`process`变量](https://nodejs.org/api/process.html)，你可以这么做：
 ```ts
 declare var process: any;
 ```
-> 你不需要为`process`做这些东西，已经有一个[社区维护的`node.d.ts`]()。
+> 你不需要为`process`做这些东西，已经有一个[社区维护的`node.d.ts`](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/node/index.d.ts)。
 
-这芸汐你去使用`process`变量而不需要 TypeScript 编译：
+这允许你去使用`process`变量而不需要 TypeScript 编译：
 ```ts
 process.exit();
 ```
@@ -29,4 +30,4 @@ process.exitWithLogging = function() {
     process.exit.apply(process, arguments);
 };
 ```
-接下来更仔细看看接口吧
+接下来更仔细看看接口吧！

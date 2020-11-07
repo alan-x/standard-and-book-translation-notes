@@ -1,15 +1,16 @@
+[已校对]
 # 枚举
 
 
-- [枚举]()
-- [数字枚举和数字]()
-- [数字枚举和字符串]()
-- [改变关联一个数字枚举的数字]()
-- [枚举是开放的]()
-- [数字枚举作为标志]()
-- [字符串枚举]()
-- [常量枚举]()
-- [有静态函数的枚举]()
+- [枚举](https://basarat.gitbook.io/typescript/type-system/enums#enums)
+- [数字枚举和数字](https://basarat.gitbook.io/typescript/type-system/enums#number-enums-and-numbers)
+- [数字枚举和字符串](https://basarat.gitbook.io/typescript/type-system/enums#number-enums-and-strings)
+- [改变关联一个数字枚举的数字](https://basarat.gitbook.io/typescript/type-system/enums#changing-the-number-associated-with-a-number-enum)
+- [枚举是开放的](https://basarat.gitbook.io/typescript/type-system/enums#enums-are-open-ended)
+- [数字枚举作为标志](https://basarat.gitbook.io/typescript/type-system/enums#number-enums-as-flags)
+- [字符串枚举](https://basarat.gitbook.io/typescript/type-system/enums#string-enums)
+- [常量枚举](https://basarat.gitbook.io/typescript/type-system/enums#const-enums)
+- [有静态函数的枚举](https://basarat.gitbook.io/typescript/type-system/enums#enum-with-static-functions)
 
 
 ### 枚举
@@ -30,7 +31,7 @@ var card = CardSuit.Clubs;
 card = "not a member of card suit"; // Error : string is not assignable to type `CardSuit`
 ```
 
-这些枚举值是`numbser`，因此今后我将叫他们数字枚举。
+这些枚举值是`number`，因此今后我将叫他们数字枚举。
 
 ### 数字枚举和数字
 
@@ -113,7 +114,7 @@ enum AnimalFlags {
 }
 ```
 
-这里，我们使用左移操作符去移动 1 到某个为止的比特得到位不相交的数字`0001`，`0010`，`0100`和`1000`（这是十进制的`1`，`2`，`4`，`8`，如果i好奇）。位操作符`|`（或）/`&`（和）/`～`（非）是你最好的朋友，当和标志一起用的时候。这展示在下面：
+这里，我们使用左移操作符去移动 1 到某个为止的比特得到位不相交的数字`0001`，`0010`，`0100`和`1000`（这是十进制的`1`，`2`，`4`，`8`，如果好奇）。当和标志一起用的时候，位操作符`|`（或）/`&`（和）/`～`（非）是你最好的朋友。这展示在下面：
 ```ts
 enum AnimalFlags {
     None           = 0,
@@ -226,7 +227,7 @@ var lie = 0;
 
 #### 常量枚举 preserveConstEnums
 
-内联有明显的性能优势。事实是在运行时没有`Tristate`变量，至死后编译器帮助你在运行时不生成没有使用的 JavaScript。然而，你可能想要编译器依旧生成 JavaScript 版本的枚举定义，为类似数字到字符串或者字符串到数字的查找。在这种场景中，你可以使用编译标志`--preserveConstEnums`，它将会依旧生成`var Tristate`定义，这样，如果你需要你就可以在运行时手动使用`Tristate["False"]`或者`Tristate[0]`。这对内联不会有任何影响。
+内联有明显的性能优势。事实是在运行时没有`Tristate`变量，让编译器帮助你在运行时不生成没有使用的 JavaScript 更简单。然而，你可能想要编译器依旧生成 JavaScript 版本的枚举定义，为类似数字到字符串或者字符串到数字的查找。在这种场景中，你可以使用编译标志`--preserveConstEnums`，它将会依旧生成`var Tristate`定义，这样，如果你需要你就可以在运行时手动使用`Tristate["False"]`或者`Tristate[0]`。这对内联不会有任何影响。
 
 ### 有静态函数的枚举
 

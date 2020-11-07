@@ -1,3 +1,4 @@
+[已校对]
 # 异常处理
 
 JavaScript 有一个`Error`类，你可以用于处理异常。你使用`throw`关键字抛出一个错误。你可以使用`try`/`catch`块对去捕获它，比如：
@@ -32,14 +33,14 @@ console.log(notValidVar); // ReferenceError: notValidVar is not defined
 
 #### SyntaxError
 
-创建一个实例表示一个错误，当转化代码不是有效 JavaScript 的时候出现。
+创建一个实例，表示一个错误，当转化代码不是有效 JavaScript 的时候出现。
 ```ts
 1***3; // SyntaxError: Unexpected token *
 ```
 
 #### TypeError
 
-创建一个实例表示一个错误，当一个变量或者参数不是一个有效的类型的时候出现。
+创建一个实例，表示一个错误，当一个变量或者参数不是一个有效的类型的时候出现。
 ```ts
 ('1.2').toPrecision(1); // TypeError: '1.2'.toPrecision is not a function
 ```

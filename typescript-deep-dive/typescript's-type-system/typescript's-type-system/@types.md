@@ -1,9 +1,9 @@
+[已校对]
 # @types
 
-[Definitely Typed]()的确是 TypeScript 的最强大的力量之一。社区有效向前推进，并且记录了接近 90% 顶部 JavaScript 项目。
+[Definitely Typed](https://github.com/DefinitelyTyped/DefinitelyTyped)的确是 TypeScript 的最强大的力量之一。社区有效向前推进，并且记录了接近 90% 顶部 JavaScript 项目。
 
-这意味着你可以使用这些项目，以非常交互和探索的方式，不需要去在分离的窗口打开文档并确保你不需要编码。
-
+这意味着你可以使用这些项目，以非常交互和探索的方式，不需要在分离的窗口打开文档并确保你不需要编码。
 
 ### 使用`@types`
 

@@ -1,10 +1,11 @@
+[已校对]
 # 接口
 
 ### 接口
 
-接口对 JS 运行时没有影响，TypeScript 接口对声明变量解构很有用。
+接口对 JS 运行时没有影响，TypeScript 接口对声明变量结构很有用。
 
-下面的两个是相同的声明，第一个使用内联注解，第二个使用接口：
+下面的两个是相同的声明，第一个使用内联声明，第二个使用接口：
 ```ts
 // Sample A
 declare var myPoint: { x: number; y: number; };
@@ -33,7 +34,7 @@ interface Point {
 var myPoint.z; // Allowed!
 ```
 
-这是因为 TypeScript 中的接口是开放的。这是 TypeScript 是非常重要的，它允许你去使用接口模拟 JavaScript 的扩展性。
+这是因为 TypeScript 中的接口是开放的。这是 TypeScript 一个非常的原则，它允许你去使用接口模拟 JavaScript 的扩展性。
 
 ### 类可以实现接口
 
@@ -49,7 +50,7 @@ class MyPoint implements Point {
 }
 ```
 
-基本在`implements`的存在中，外部的`Point`接口的任何改变都会导致你的代码库的一个编译错误，你可以简单的保证他们同步：
+基本上，在`implements`的存在的时候，外部的`Point`接口的任何改变都会导致你的代码库的一个编译错误，你可以简单的保证他们同步：
 ```ts
 interface Point {
     x: number; y: number;

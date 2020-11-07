@@ -1,14 +1,15 @@
+[已校对]
 # never 类型
 
 ### never
-> [Youtube: never 类型的视频课程]()
-> [Egghead: never 类型的视频课程]()
+> [Youtube: never 类型的视频课程](https://www.youtube.com/watch?v=aldIFYWu6xc)
+> [Egghead: never 类型的视频课程](https://egghead.io/lessons/typescript-use-the-never-type-to-avoid-code-with-dead-ends-using-typescript)
 
-编程语言设计的确有一个底部类型的改变，在你进行代码流分析之后，就能自然得出结论。TypeScript 使用代码流分析（），因此它需要去依赖存在的可能永远不会发生的的东西。
+编程语言设计的确有一个底部类型的概念，在你进行代码流分析之后，就能自然得出结论。TypeScript 使用代码流分析（😎），因此它需要可靠的存在的可能永远不会发生的的东西。
 
-用在 TypeScrpt 的`never`类型去贡献这个底部类型。自然发生的情况：
+用在 TypeScrpt 的`never`类型去贡献这个底部类型。这是自然发生的情况：
 
-- 一饿个函数永远不会返回（比如，如果函数体有`whilte(true){}`）
+- 一个函数永远不会返回（比如，如果函数体有`whilte(true){}`）
 - 一个函数总是抛出（比如，在`function foo(){throw new Error('Not Implemented')}`，`foo`的返回类型是`never`）
 
 当然你可以自己使用这个声明
@@ -46,16 +47,16 @@ function foo(x: string | number): boolean {
 function fail(message: string): never { throw new Error(message); }
 ```
 
-因为`never`只能赋值给其他`never`，你也可以用他做编译时详细检测。这在[区分联合章节]()被覆盖。
+因为`never`只能赋值给其他`never`，你也可以用他做编译时详细检测。这在[区分联合章节](https://basarat.gitbook.io/typescript/type-system/discriminated-unions)被覆盖。
 
 
 ### 和`void`的混乱
 
-只要告诉你`never`被返回，当一个函数永远不会优雅退出，你直觉认为和`void`相同。然而，`void`是一个单元，`never`是一个假值。
+当一个函数永远不会优雅退出，只要告诉你`never`被返回，直觉上，你认为和`void`相同。然而，`void`是一个单元，`never`是一个假值。
 
-一个啥也没有返回的函数返回一个`void`单元。然而，一个函数永远不会返回（或者总是抛出）返回`never`。`void`是可以被赋值的（），但是`never`永远不能赋值给 `never` 之外的。
+一个啥也没有返回的函数返回一个`void`单元。然而，一个函数永远不会返回（或者总是抛出）返回`never`。`void`是可以被赋值的（没有`strictNullChecking`），但是`never`永远不能赋值给 `never` 之外。
 
-### never 返回函数的类型接口
+### never 返回函数的类型推断
 
 对于函数声明，TypeScript 默认推断`void`，如下显示：
 ```ts
@@ -76,7 +77,7 @@ function failDeclaration(message: string): never {
 }
 ```
 
-主要原因是和真实世界 JavaScript 代码向后兼容：
+主要原因是向后兼容真实世界 JavaScript 代码：
 ```ts
 class Base {
     overrideMe() {

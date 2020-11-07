@@ -1,3 +1,4 @@
+[已校对]
 # 字面量类型
 
 字面量是 JavaScript 原生的明确的值。
@@ -30,11 +31,9 @@ move(1,"North"); // Okay
 move(1,"Nurth"); // Error!
 ```
 
-
-
 ### 其他字面量类型
 
-TypeScript 还支持`boolean`和`number`字面量乐行，比如：
+TypeScript 还支持`boolean`和`number`字面量类型，比如：
 ```ts
 type OneToFive = 1 | 2 | 3 | 4 | 5;
 type Bools = true | false;
@@ -77,7 +76,7 @@ iTakeFoo(test.someProp); // Okay!
 
 #### 基于字符串的枚举
 
-[TypeScript 枚举是基于数字的]()。你可以使用字符串字面量和联合类型去模拟基于字符串的么哦句，就像我们在前面的`CardinalDirection`例子。你甚至可以生成一个`Key:Value`构造使用下面的函数：
+[TypeScript 枚举是基于数字的](https://basarat.gitbook.io/typescript/type-system/enums)。你可以使用字符串字面量和联合类型去模拟基于字符串的枚举，就像我们在前面的`CardinalDirection`例子。你甚至可以生成一个`Key:Value`构造使用下面的函数：
 ```ts
 /** Utility function to create a K:V from a list of strings */
 function strEnum<T extends string>(o: Array<T>): {[K in T]: K} {
@@ -122,13 +121,13 @@ sample = 'North'; // Okay
 sample = 'AnythingElse'; // ERROR!
 ```
 
-#### 模型化存在的 JavaScript API
+#### 现存的 JavaScript API
 
-比如[CodeMirror 编辑器有一个可选的`readonly`选项]()可以是`boolean`或者字面量字符串`"nocursor"`（有效的值`true,false,"nocursor"`）。他可以声明为：
+比如[CodeMirror 编辑器有一个可选的`readonly`选项](https://codemirror.net/doc/manual.html#option_readOnly)可以是`boolean`或者字面量字符串`"nocursor"`（有效的值`true,false,"nocursor"`）。他可以声明为：
 ```ts
 readOnly: boolean | 'nocursor';
 
 ```
 
 #### 区分联合
-我们将[在这本书的后面]()覆盖
+我们将[在这本书的后面](https://basarat.gitbook.io/typescript/type-system/discriminated-unions)覆盖

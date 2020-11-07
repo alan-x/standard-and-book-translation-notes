@@ -1,3 +1,4 @@
+[已校对]
 # 索引签名
 
 JavaScript（因此 TypeScript） 中的一个`Object`可以使用一个字符串去访问持有任何其他 JavaScript 对象。
@@ -8,7 +9,6 @@ let foo: any = {};
 foo['Hello'] = 'World';
 console.log(foo['Hello']); // World
 ```
-
 我们在键`"Hello"`下存储一个字符串`"World"`。记住我们说他可以存储任何 JavaScript 对象，因此存储一个类实例去显示这个概念：
 ```ts
 class Foo {
@@ -98,7 +98,7 @@ console.log((2).toString()); // 2
 
 #### 声明一个索引签名
 
-因此我们可以使用`any`去告诉 TypeScript 让我们做任我我们想要的。我们可以实际指定一个明确的索引签名。比如，假设你想要确保存储在一个对象的任何东西使用一个字符串的都兼容结构`{message: string}`。这可以通过使用`{ [index:string] : {message: string} }`声明实现。这显示在下面：
+因此我们可以使用`any`去告诉 TypeScript 让我们做任何我们想要的。我们可以实际指定一个明确的索引签名。比如，假设你想要确保存储在一个对象的任何东西使用一个字符串的都兼容结构`{message: string}`。这可以通过使用`{ [index:string] : {message: string} }`声明实现。这显示在下面：
 ```ts
 let foo:{ [index:string] : {message: string} } = {};
 
@@ -137,7 +137,7 @@ interface Bar {
 }
 ```
 
-这提供安全行，因此任何字符串访问返回相同的结果：
+这提供安全性，因此任何字符串访问返回相同的结果：
 ```ts
 interface Foo {
   x: number;
@@ -176,7 +176,7 @@ type FromSomeIndex<K extends string> = { [key in K]: number }
 
 #### 拥有`string`和`number`索引
 
-何不是一个常见用户常见，尽管如此，TypeScript 编译器也支持它。
+这不是一个常见使用场景，尽管如此，TypeScript 编译器也支持它。
 
 然而，它有一个显示，那就是`string`索引比`number`更严格。这是为了允许类似下面的输入：
 ```ts
@@ -195,7 +195,7 @@ interface ArrStr {
 > 当添加索引签名的时候要考虑的 API 
 
 JS 社区中常见的场景是你将看到 API 拒绝字符串索引，比如一个 JS 库中 CSS 常见的模式：
-```
+```ts
 interface NestedCSS {
   color?: string;
   [selector: string]: string | NestedCSS | undefined;

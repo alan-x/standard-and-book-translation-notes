@@ -1,8 +1,9 @@
+[已校对]
 # 新鲜度
 
-- [新鲜度]()
-- [允许额外的属性]()
-- [使用场景： React]()
+- [新鲜度](https://basarat.gitbook.io/typescript/type-system/freshness#freshness)
+- [允许额外的属性](https://basarat.gitbook.io/typescript/type-system/freshness#allowing-extra-properties)
+- [使用场景： React](https://basarat.gitbook.io/typescript/type-system/freshness#use-case-react-state)
 
 ### 新鲜度
 
@@ -63,7 +64,7 @@ x = { foo: 1, baz: 2 };  // Ok, `baz` matched by index signature
 
 ### 使用场景： React 状态
 
-[Facebook ReactJS]()为对象新鲜度提供了一个很好的使用场景。在一个组件，非常常见的场景，你使用少量的属性而不是传递所有的属性调用`setState`，比如：
+[Facebook ReactJS](https://facebook.github.io/react/)为对象新鲜度提供了一个很好的使用场景。在一个组件，非常常见的场景，你使用少量的属性而不是传递所有的属性调用`setState`，比如：
 ```ts
 // Assuming
 interface State {

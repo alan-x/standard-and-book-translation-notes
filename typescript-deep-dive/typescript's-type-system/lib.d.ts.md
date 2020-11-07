@@ -1,13 +1,14 @@
+[已校对]
 # lib.d.ts
 
-- [lib.d.ts]()
-- [使用例子]()
-- [内部视角]()
-- [修改原生类型]()
-- [使用自定义 lib.d.ts]()
-- [编译器`target`对 lib.d.ts 的影响]()
-- [`lib`选项]()
-- [旧的`JavaScript`引擎的 polyfill]()
+- [lib.d.ts](https://basarat.gitbook.io/typescript/type-system/lib.d.ts#libdts)
+- [使用例子](https://basarat.gitbook.io/typescript/type-system/lib.d.ts#example-usage)
+- [内部视角](https://basarat.gitbook.io/typescript/type-system/lib.d.ts#libdts-inside-look)
+- [修改原生类型](https://basarat.gitbook.io/typescript/type-system/lib.d.ts#modifying-native-types)
+- [使用自定义 lib.d.ts](https://basarat.gitbook.io/typescript/type-system/lib.d.ts#using-your-own-custom-libdts)
+- [编译器`target`对 lib.d.ts 的影响](https://basarat.gitbook.io/typescript/type-system/lib.d.ts#compiler-target-effect-on-libdts)
+- [`lib`选项](https://basarat.gitbook.io/typescript/type-system/lib.d.ts#lib-option)
+- [旧的`JavaScript`引擎的 polyfill](https://basarat.gitbook.io/typescript/type-system/lib.d.ts#polyfill-for-old-javascript-engines)
 
 
 ### `lib.d.ts`
@@ -63,7 +64,7 @@ interface Window extends EventTarget, WindowTimers, WindowSessionStorage, Window
 
 ### 修改原生类型
 
-因为 TypeScript 中的接口是开放的，这以为着你可以添加成员到声明在`lib.d.ts`中的接口，并且 TypeScript 会捡起这些。注意你需要让这些改变在[全局模块]()，让这些接口可以被`lib.d.ts`关联。我们甚至推荐创建一个特定的文件，叫做`global.d.ts`来做这件事。
+因为 TypeScript 中的接口是开放的，这意味着你可以添加成员到声明在`lib.d.ts`中的接口，并且 TypeScript 会捡起这些。注意你需要让这些改变在[全局模块](https://basarat.gitbook.io/typescript/project/modules)，让这些接口可以被`lib.d.ts`关联。我们甚至推荐创建一个特定的文件，叫做`global.d.ts`来做这件事。
 
 这里有一些例子场景，我们添加了一些东西到`Window`，`Math`，`Date`：
 
@@ -87,9 +88,9 @@ window.helloWorld('gracius'); // Error: Supplied parameters do not match the sig
 
 #### `Math`例子
 
-全局变量`Math`定义在`lib.d.ts`（子啊一次，使用你的开发工具去导航到定义）：
+全局变量`Math`定义在`lib.d.ts`（再一次，使用你的开发工具去导航到定义）：
 ```ts
-/** An intrinsic object that provides basic mathematics functionality and constants. */
+/** An intrinsic object that provides basic mathematics nctionality and constants. */
 declare var Math: Math;
 ```
 
@@ -132,7 +133,7 @@ interface DateConstructor {
 }
 ```
 
-考虑项目[date.js]()。DateJS 添加成员到`Date`全局变量和`Date`实例。因此这个库的 TypeScript 定义可能像（[顺便，社区已经为这个场景编写了]()）：
+考虑项目[date.js](https://github.com/abritinthebay/datejs)。DateJS 添加成员到`Date`全局变量和`Date`实例。因此这个库的 TypeScript 定义可能像（[顺便，社区已经为这个场景编写了](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/datejs/index.d.ts)）：
 ```ts
 /** DateJS Public Static Methods */
 interface DateConstructor {
@@ -198,7 +199,7 @@ console.log('foo bas'.endsWith('bas')); // true
 
 ### 使用你自己的自定义 lib.d.ts
 
-就像我们前面提到的，使用`--noLib`布尔值编译器标志会导致 TypeScript 排除自动白汗的`lib.d.ts`。有许多的理由解释为什么这是一个飞铲更有用的特性，这里是常见的几个：
+就像我们前面提到的，使用`--noLib`布尔值编译器标志会导致 TypeScript 排除自动包含的`lib.d.ts`。有许多的理由解释为什么这是一个非常有用的特性，这里是常见的几个：
 
 - 你运行在一个自定义 JavaScript 环境，和基于标准浏览器运行时环境有非常大的不同。
 - 你想要在你的代码中严格控制全局变量。比如，lib.d.ts 定义`item`作为全局变量，而你不想要这泄露到你的代码。
@@ -207,9 +208,9 @@ console.log('foo bas'.endsWith('bas')); // true
 
 > 注意：小心`--noLib`。一旦你在 noLib 环境，如果你选择去分享你的项目给其他人，他们也会强制进入 noLib 环境（或者你的 lib 环境）。甚至更糟糕，如果你将他们的代码引入到你的项目，你肯跟需要移植它到你的库代码。
 
-### 编译器 target 对`lib,d,ts`的影响
+### 编译器 target 对`lib.d.ts`的影响
 
-设置编译器目标到`ts6`导致`lib,d,ts`包含额外的类似`Promise`之类更现代（es6）的外界声明。编译器目标的魔法效果改变了代码的外界，是一些人期待的，而对于其他人，这是一个问题，因为它合并代码生成和代码环境。
+设置编译器目标到`ts6`导致`lib.d.ts`包含额外的类似`Promise`之类更现代（es6）的外界声明。编译器目标的魔法效果改变了代码的外界，是一些人期待的，而对于其他人，这是一个问题，因为它合并代码生成和代码环境。
 
 然而，如果你想要更细粒度的控制你的环境，你应该使用`--lib`选项，我们将会在后面讨论。
 
@@ -217,7 +218,7 @@ console.log('foo bas'.endsWith('bas')); // true
 
 有时候（很多时候）你想要解绑编译目标（生成的 JavaScript 版本）和环境库支持。一个常见例子是`Promise`，比如，现在（在 June 2016）你大部分喜欢`--target es5`但是依旧使用最新的特性，比如`Promise`。为了支持这个，你可以采取对`lib`的明确控制，使用`lib`编译器选项。
 
-> 注意：使用`--lib`从`--target`解绑任何 lib 魔法，使用`lib`编译器选项。
+> 注意：使用`--lib`解绑从`--target`来的任何 lib 魔法，允许你更好的控制。
 
 你可以在命令行或者`tsconfig.json`（推荐）提供这个选项：
 
@@ -278,7 +279,7 @@ lib 可以如下分类：
 
 ES5 包含 Symbol 的例子：
 
-Symbol API 没有被包含，当 targe 是 es5 的时候。实际上我们接收到一个错误类似：[ts]Cannot find name 'Symbol'。我们可以使用"target":"es5"绑定“lib”在 TypeScript 去提供 API：
+当 targe 是 es5 的时候，Symbol API 没有被包含。实际上我们接收到一个错误类似：[ts]Cannot find name 'Symbol'。我们可以使用"target":"es5"绑定“lib”在 TypeScript 去提供 API：
 ```ts
 "compilerOptions": {
     "target": "es5",
@@ -288,7 +289,7 @@ Symbol API 没有被包含，当 targe 是 es5 的时候。实际上我们接收
 
 ### 旧的 JavaScript 引擎的 Polyfille
 
-> [Egghead PRO 关于这个主题的视频]()
+> [Egghead PRO 关于这个主题的视频](https://egghead.io/lessons/typescript-using-es6-and-esnext-with-typescript)
 
 使用现代的`lib`，只有很少的运行时特性可以使用，比如`Map`/`Set`，甚至`Promise`(这个列表将会随着时间改变)。为了使用这些，你需要去使用`core-js`。简单安装：
 ```ts

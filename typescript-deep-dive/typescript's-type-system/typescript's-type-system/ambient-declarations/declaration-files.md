@@ -1,10 +1,10 @@
+[已校对]
 #  声明文件
 
 你可以告诉 TypeScript 你尝试使用`declare`去描述存在在其他地方的代码（比如，写在 javaScript/CoffeeScript/浏览器或者 Node.js 之类的运行时环境）。作为一个快速例子：
 ```ts
 foo = 123; // Error: `foo` is not defined
-
-````
+```
 vs
 ```ts
 declare var foo: any;

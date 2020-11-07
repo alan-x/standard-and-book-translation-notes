@@ -1,10 +1,11 @@
+[已校对]
 # 移动类型
 
 TypeScript 的类型系统威力非常强大，允许以其他语言不可能的方式移动和分割类型。
 
-这是因为 TypeScript 设计允许你去无缝的和类似 JavaScript 之类的高动态语言无缝工作，这里我们覆盖了 TypeScript 中移动类型相关的一些陷阱。
+这是因为 TypeScript 设计允许你去和类似 JavaScript 之类的高动态语言无缝工作，这里我们覆盖了 TypeScript 中移动类型相关的一些陷阱。
 
-这些的核心东西：你改变了一个东西，而其他的所有东西会自动更新，你会得到一个漂亮的错误，如果一些东西被破坏，比如一个设计良好的约束系统。
+这里的核心东西：你改变了一个东西，而其他的所有东西会自动更新，如果一些东西被破坏，你会得到一个漂亮的错误，比如一个设计良好的约束系统。
 
 ### 赋值类型 + 值
 
@@ -15,7 +16,7 @@ var Bar = Foo;
 var bar: Bar; // ERROR: cannot find name 'Bar'
 ```
 
-这是一个错误，因为`var`只赋值了`Foo`到变量声明空间，并却你不能使用`Bar`作为类型声明。适合的方式是使用`import`关键字。注意你只能以这种方式使用`import`关键字，如果你使用命名空间或者模块（更多在后面）：
+这是一个错误，因为`var`只赋值了`Foo`到变量声明空间，并且你不能使用`Bar`作为类型声明。适合的方式是使用`import`关键字。注意你只能以这种方式使用`import`关键字，如果你使用命名空间或者模块（更多在后面）：
 ```ts
 namespace importing {
     export class Foo { }
@@ -56,7 +57,6 @@ declare let _foo: Foo;
 let bar: typeof _foo.foo; // `bar` has type `number`
 ```
 
-
 ### 捕获魔法字符串的类型
 
 很多 JavaScript 库和框架都是用原生 JavaScript 字符串。你可以使用`const`变量去捕获他们的类型，比如：
@@ -72,10 +72,9 @@ bar = "Hello World"; // Okay!
 bar = "anything else "; // Error!
 ```
 
-在这个例子中，`bar`有字面量类型`"Hello World"`。我们会在[字面量类型章节]()覆盖更多。
+在这个例子中，`bar`有字面量类型`"Hello World"`。我们会在[字面量类型章节](https://basarat.gitbook.io/typescript/type-system/literal-types)覆盖更多。
 
 ### 捕获键的名字
-
 
 `keyof`操作符让你捕获类型的关键名字。比如，你可以使用它去捕获变量的关键字名字，通过使用`typeof`第一次扫描：
 ```ts

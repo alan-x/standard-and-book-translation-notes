@@ -1,8 +1,9 @@
+[已校对]
 # 区分联合
 
 ### 区分联合
 
-如果你有一个具有[字面量成员]()的类，则你可以使用这个成员去区分联合成员。
+如果你有一个具有[字面量成员](https://basarat.gitbook.io/typescript/type-system/literal-types)的类，则你可以使用这个成员去区分联合成员。
 
 作为一个例子，假设有`Sequare`和`Rectangle`的联合，这里我们有一个成员`king`存在于联合成员，是一个特殊的字面量类型：
 ```ts
@@ -37,7 +38,7 @@ function area(s: Shape) {
 
 ### 全面检测
 
-经常你想要保证联合的所有成员有一些代码（行为）贯穿他们。
+很常见的，你想要保证联合的所有成员有一些代码（行为）贯穿他们。
 ```ts
 interface Square {
     kind: "square";
@@ -72,7 +73,7 @@ function area(s: Shape) {
     // Would it be great if you could get TypeScript to give you an error?
 }
 ```
-你可以通过简单添加一个落空并确保这个块中的类型推断和`never`类型兼容。比如，如果你添加了一个全面检测，你将得到一个漂亮的错误：
+你可以通过简单添加一个兜底确保这个块中的类型推断和`never`类型兼容。比如，如果你添加了一个全面检测，你将得到一个漂亮的错误：
 ```ts
 function area(s: Shape) {
     if (s.kind === "square") {
@@ -122,7 +123,7 @@ function area(s: Shape) {
 
 ### strictNullChecks
 
-如果使用 strictNullChecks 并执行全面检测，TypeScript kennel抱怨“并不是所有的代码路径都有返回值”。你可以通过返回`_exhaustiveCheck`变量沉默它（`never`类似）。因此：
+如果使用 strictNullChecks 并执行全面检测，TypeScript 可能抱怨“并不是所有的代码路径都有返回值”。你可以通过返回`_exhaustiveCheck`变量沉默它（`never`类似）。因此：
 ```ts
 function area(s: Shape) {
     switch (s.kind) {
@@ -218,7 +219,7 @@ function printDTO(dto:DTO) {
 
 使用这个的流行库是 redux。
 
-这是[redux 的 gist]()使用 TypeScript 类型声明：
+这是[redux 的 gist](https://github.com/reactjs/redux#the-gist)使用 TypeScript 类型声明：
 ```ts
 import { createStore } from 'redux'
 

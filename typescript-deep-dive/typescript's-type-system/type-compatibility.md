@@ -1,18 +1,19 @@
+[已校对]
 # 类型兼容
-- [类型兼容]()
-- [无声]()
-- [构造]()
-- [泛型]()
-- [可变]()
-- [函数]()
-    - [返回类型]()
-    - [参数的数量]()
-    - [可选和剩余参数]()
-    - [参数类型]()
-- [枚举]()
-- [类]()
-- [泛型]()
-- [脚注：不变性]()
+- [类型兼容](https://basarat.gitbook.io/typescript/type-system/type-compatibility#type-compatibility)
+- [静默](https://basarat.gitbook.io/typescript/type-system/type-compatibility#soundness)
+- [构造](https://basarat.gitbook.io/typescript/type-system/type-compatibility#structural)
+- [泛型](https://basarat.gitbook.io/typescript/type-system/type-compatibility#generics)
+- [可变](https://basarat.gitbook.io/typescript/type-system/type-compatibility#variance)
+- [函数](https://basarat.gitbook.io/typescript/type-system/type-compatibility#functions)
+    - [返回类型](https://basarat.gitbook.io/typescript/type-system/type-compatibility#return-type)
+    - [参数的数量](https://basarat.gitbook.io/typescript/type-system/type-compatibility#number-of-arguments)
+    - [可选和剩余参数](https://basarat.gitbook.io/typescript/type-system/type-compatibility#optional-and-rest-parameters)
+    - [参数类型](https://basarat.gitbook.io/typescript/type-system/type-compatibility#types-of-arguments)
+- [枚举](https://basarat.gitbook.io/typescript/type-system/type-compatibility#enums)
+- [类](https://basarat.gitbook.io/typescript/type-system/type-compatibility#classes)
+- [泛型](https://basarat.gitbook.io/typescript/type-system/type-compatibility#generics)
+- [脚注：不变性](https://basarat.gitbook.io/typescript/type-system/type-compatibility#footnote-invariance)
 
 
 ### 类型兼容
@@ -26,9 +27,9 @@ str = num; // ERROR: `number` is not assignable to `string`
 num = str; // ERROR: `string` is not assignable to `number`
 ```
 
-### 无声
+### 不健全
 
-TypeScript 的类型系统是为了方便和允许无声的行为而设计的，比如，任何东西都可以赋值给`any`，意味着告诉编译器允许你去做你想做的：
+TypeScript 的类型系统是为了方便和允许不健全的行为而设计的，比如，任何东西都可以赋值给`any`，意味着告诉编译器允许你去做你想做的：
 ```ts
 let foo: any = 123;
 foo = "Hello";
@@ -39,7 +40,7 @@ foo.toPrecision(3); // Allowed as you typed it as `any`
 
 ### 解构
 
-TypeScript  对象是结构化类型。这意味着名字无所谓，只要解构匹配
+TypeScript 对象是结构化类型。这意味着名字无所谓，只要解构匹配
 ```ts
 interface Point {
     x: number,
@@ -55,9 +56,8 @@ let p: Point;
 p = new Point2D(1,2);
 ```
 
-这允许你去自有创建对象（）并依旧安全，只要它可以被推断。
+这允许你去自由创建对象（就像妮子啊 vanilla JA 做的）并依旧安全，只要它可以被推断。
 
-当然太多数据也被认为是安全的：
 ```ts
 interface Point2D {
     x: number;
@@ -87,12 +87,12 @@ iTakePoint2D({ x: 0 }); // Error: missing information `y`
 
 在`Base`和`Child`构成的类型兼容的复杂类型取决于`Base`和`Child`在类似场景中取决于差异。
 
-- 协变：（）只在相同的方向
-- 异变：（）只在不透明的方向
-- 双变：正面和背面
+- 协变：（co aka joint）只在相同的方向
+- 异变：（contra aka negative）只在不透明的方向
+- 双变：（bi aka both）正面和背面
 - 不变：如果类型不是完全相同，他们就不兼容
 
-> 注意：对于一个完全兼容的类型系统，存在类似 JavaScript 
+> 注意：对于类似 JavaScript 的存在可变数据的非常健全的类型来说，`invariant`是唯一有效的选项。但是就像提到的，便利强制我们去做不健全的选择。
 
 ### 函数
 
@@ -143,7 +143,7 @@ foo = bar = bas;
 bas = bar = foo;
 ```
 
-> 注意：可选的（在我们的例子中是`bar`）和非可选的（在我们的例子中是`foo`）只有在`strictNullChecks`是 false 的时候
+> 注意：可选的（在我们的例子中是`bar`）和非可选的（在我们的例子中是`foo`）只有在`strictNullChecks`是 false 的时候。
 
 #### 参数的类型
 
@@ -200,7 +200,7 @@ status = num; // OKAY
 num = status; // OKAY
 ```
 
-- 不同枚举类型的枚举值被认为是不兼容的。这让枚举正常可用（而不死结构上）
+- 不同枚举类型的枚举值被认为是不兼容的。这让枚举正常可用（而不是结构上）
 ```ts
 enum Status { Ready, Waiting };
 enum Color { Red, Blue, Green };
@@ -232,7 +232,7 @@ a = s;  // OK
 s = a;  // OK
 ```
 
-- `private`和`protected`成员必须从相同的类。这类成员的建立让类正常。
+- `private`和`protected`成员必须来自相同的类。这类成员的建立让类正常。
 ```ts
 /** A class hierarchy */
 class Animal { protected feet: number; }
@@ -276,7 +276,7 @@ let y: NotEmpty<string>;
 x = y;  // error, x and y are not compatible
 ```
 
-为了放置泛型参数没有被实例化，他们被`any`替代，在检查兼容性之前：
+为了防止泛型参数没有被实例化，在检查兼容性之前，他们被`any`替代：
 ```ts
 let identity = function<T>(x: T): T {
     // ...
@@ -289,7 +289,7 @@ let reverse = function<U>(y: U): U {
 identity = reverse;  // Okay because (x: any)=>any matches (y: any)=>any
 ```
 
-泛型调用类命中，通过关联类兼容性，就像之前提到的。比如
+就像之前提到的，类相关的泛型，通过关联类兼容性匹配。比如
 ```ts
 class List<T> {
   add(val: T) { }
@@ -307,10 +307,9 @@ cats.add(new Animal()); // Error
 cats.add(new Cat()); // Okay
 ```
 
-
 ### 脚注：不可变
 
-我们说不可变是唯一可见的选项。这是一个例子，`contra`和`co`可变显示为不安全的数组：
+我们说不可变是唯一健全的选项。这是一个例子，`contra`和`co`可变显示为不安全的数组：
 ```ts
 /** Hierarchy */
 class Animal { constructor(public name: string){} }

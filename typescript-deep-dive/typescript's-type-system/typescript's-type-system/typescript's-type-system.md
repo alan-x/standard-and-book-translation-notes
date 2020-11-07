@@ -1,19 +1,20 @@
+[已校对]
 # TypeScript 的类型系统
 
-当我们讨论[为什么是 TypeScirpt]()的时候我们覆盖了 TypeScript 类型系统的主要特性。下面是讨论的关键点，我们不需要深入解释：
+当我们讨论[为什么是 TypeScirpt](https://basarat.gitbook.io/typescript/getting-started/why-typescript)的时候我们介绍了 TypeScript 类型系统的主要特性。下面是讨论的关键点，我们不需要深入解释：
 
 - TypeScript 的类型系统设计为可选择的，因此你的 JavaScript 就是 TypeScript。
 
 - TypeScript 不阻塞 JavaScript 生成，在类型错误存在的时候，允许你去渐进的更新的你的 JS 到 TS。
 
-现在从 TypeScript 类型系统的语法开始吧。这种方式，你可以开始立即在你的代码中使用这些注解，并看到收益。这将会为之后的深入做准备。
+现在从 TypeScript 类型系统的语法开始吧。这种方式，你可以开始立即在你的代码中使用这些声明，并看到收益。这将会为之后的深入做准备。
 
 ### 基础注解
 
 就像前面提到的，类型使用`:TypeAnnotation`语法声明。任何类型声明空间的变量可以用作类型声明。
 
 下面的例子展示了变量，函数参数和函数返回值的类型声明：
-```
+```ts
 var num: number = 123;
 function identity(num: number): number {
     return num;
@@ -22,7 +23,7 @@ function identity(num: number): number {
 
 #### 原始类型
 
-JavaScript 原始类型在 TypeScript 类型系统存在的很好。这意味着`string`，`number`，`boolean`如下展示：
+JavaScript 原始类型在 TypeScript 类型系统表现的很好。这意味着`string`，`number`，`boolean`如下展示：
 ```ts
 var num: number;
 var str: string;
@@ -42,7 +43,7 @@ bool = 'false'; // Error
 
 #### 数组
 
-TypeScript 为数组提供了专门的语法让你声明和标记你的代码更简单。这个语法只是基础的添加`[]`后缀到任何有效的类型声明（比如`:boolean[]`）。它允许你去安全的做任何常规的数组操作，从类似赋值错误的类型到一个成员之类的错误中保护你。展示如下：
+TypeScript 为数组提供了专门的语法让你声明和标记你的代码更简单。这个语法只是简单的添加`[]`后缀到任何有效的类型声明（比如`:boolean[]`）。它允许你去安全的做任何常规的数组操作，从类似赋值错误的类型到一个成员之类的错误中保护你。展示如下：
 ```ts
 var boolArray: boolean[];
 
@@ -113,7 +114,7 @@ name = {           // Error : `second` is the wrong type
 
 #### any
 
-`any`类型在 TypeScript 中有特俗的地位。它给你一个类型系统的逃生出口，告诉编译器关闭它。`any`和`any`，还有其他类型系统中的任何系统兼容。这意味着任何东西都可以赋值给它，它也可以被赋值给任何东西。这展示在下面的例子：
+`any`类型在 TypeScript 中有特殊的地位。它给你一个类型系统的逃生出口，告诉编译器滚开。`any`和`any`，还有其他类型系统中的任何系统都兼容。这意味着任何东西都可以赋值给它，它也可以被赋值给任何东西。这展示在下面的例子：
 ```ts
 var power: any;
 
@@ -127,11 +128,11 @@ power = num;
 num = power;
 ```
 
-如果你正在转译 JavaScript 到 TypeScript，你可能会在开始的时候和`any`走的很近。然而，不要太严肃对待这个关系，因为这意味着类型安全的确保取决于你。你只是告诉便器不要采取任何有意义的静态分析。
+如果你正在转译 JavaScript 到 TypeScript，你可能会在开始的时候和`any`走的很近。然而，不要太严肃对待这个关系，因为这意味着类型安全的确保取决于你。你只是告诉编译器不要采取任何有意义的静态分析。
 
 #### `null`和`undefined`
 
-他们被如何对待取决于`strictNullChecks`编译器标志（我们将在之后覆盖这个标志）。当`strictNullCheck:false`，`null`和`undefined`JavaScript 字面量被类型系统有效的对待为`any`类型的东西。这些字面量可以被赋值给任何其他类型。这在下面的例子展示：
+他们被如何对待取决于`strictNullChecks`编译器标志（我们将在之后提到这个标志）。当`strictNullCheck:false`，`null`和`undefined`JavaScript 字面量被类型系统有效的对待为`any`类型的东西。这些字面量可以被赋值给任何其他类型。这在下面的例子展示：
 ```ts
 var num: number;
 var str: string;
@@ -174,7 +175,7 @@ reversed[0] = 1;       // Okay
 reversed = [1, 2];     // Okay
 ```
 
-基本上可以这么说，函数`reverse`接受一个某种类型`T`的数组（`items: T[]`）（注意`reverse<T>`的类型参数）和返回值的数组类型`T`（注意`:T[]`）。因为`reverse`函数返回它接受的相同类型的项，TypeScript 知道`reversed`变量也是`number[]`类型，将会赋予你类型安全。同样，如果你传递一个`string[]`数组到反向函数，返回的结果见识一个数组的`sting[]`，并且你也会得到类型安全，就像下面现实的：
+基本上可以这么说，函数`reverse`接受一个某种类型`T`的数组（`items: T[]`）（注意`reverse<T>`的类型参数）和返回值的数组类型`T`（注意`:T[]`）。因为`reverse`函数返回它接受的相同类型的项，TypeScript 知道`reversed`变量也是`number[]`类型，将会赋予你类型安全。同样，如果你传递一个`string[]`数组到反向函数，返回的结果也是一个数组的`sting[]`，并且你也会得到类型安全，就像下面显示的：
 ```ts
 var strArr = ['1', '2'];
 var reversedStrs = reverse(strArr);
@@ -196,7 +197,7 @@ var reversedNums = numArr.reverse();
 reversedNums = ['1', '2']; // Error!
 ```
 
-当我们之后在**环境声明**章节展现`lib.d.ts`的时候，我们将讨论更多关于`Array<T>`接口。
+当我们之后在**外界声明**章节展现`lib.d.ts`的时候，我们将讨论更多关于`Array<T>`接口。
 
 ### 联合类型
 
@@ -230,7 +231,7 @@ const b = x.b;
 ```
 
 ### 元组类型
-JavaScript 没有一流的元组支持。人们通常只是使用数组作为一个元组。这正式 TypeScript 类型系统所支持的。元素可以使用`:[typeofmember1, typeofmember2]`声明。一个元组可以有任何数量的成员。元组在下面的例子显示：
+JavaScript 没有一流的元组支持。人们通常只是使用数组作为一个元组。这正是 TypeScript 类型系统所支持的。元素可以使用`:[typeofmember1, typeofmember2]`声明。一个元组可以有任何数量的成员。元组在下面的例子显示：
 ```ts
 var nameNumber: [string, number];
 
@@ -240,8 +241,8 @@ nameNumber = ['Jenny', 8675309];
 // Error!
 nameNumber = ['Jenny', '867-5309'];
 ```
-将这个和 TypeScript 支持的解构结合，元素柑橘额几乎是一流的，尽管底层是数组：
-```
+将这个和 TypeScript 支持的解构结合，元组几乎是一流的，尽管底层是数组：
+```ts
 var nameNumber: [string, number];
 nameNumber = ['Jenny', 8675309];
 

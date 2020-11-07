@@ -1,3 +1,4 @@
+[已校对]
 # 只读
 
 ### readonly
@@ -119,7 +120,7 @@ foo = foo.concat([4]); // Okay: create a copy
 
 #### 自动推断
 
-在某些场景，编译器可以自动推断一个指定的值为 readonly，比如，在一个雷内，如果你有一个属性只有 getter 但是没有 setter，它被假设为 readonly，比如：
+在某些场景，编译器可以自动推断一个指定的值为 readonly，比如，在一个类内，如果你有一个属性只有 getter 但是没有 setter，它被假设为 readonly，比如：
 ```ts
 class Person {
     firstName: string = "John";

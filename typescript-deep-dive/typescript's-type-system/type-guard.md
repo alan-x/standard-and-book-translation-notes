@@ -1,7 +1,8 @@
+[已校对]
 # 类型守卫
 
-- [类型守卫]()
-- [用户定义的类型守卫]()
+- [类型守卫](https://basarat.gitbook.io/typescript/type-system/typeguard#type-guard)
+- [用户定义的类型守卫](https://basarat.gitbook.io/typescript/type-system/typeguard#user-defined-type-guards)
 
 ### 类型守卫
 
@@ -9,7 +10,7 @@
 
 ### typeof
 
-TypeScript能够意识到 JavaScript `instanceof`和`typeof`操作符的使用。如果你在一个条件的块中使用这些，TypeScript 将会理解变量的类型在条件块中不同。这是一个例子，TypeScript 意识到一个特殊的函数不存在于`string`，并指出这是一个用户输入错误：
+TypeScript 能够意识到 JavaScript `instanceof`和`typeof`操作符的使用。如果你在一个条件的块中使用这些，TypeScript 将会理解变量的类型在条件块中不同。这是一个例子，TypeScript 意识到一个特殊的函数不存在于`string`，并指出这是一个用户输入错误：
 ```ts
 function doSomething(x: number | string) {
     if (typeof x === 'string') { // Within the block TypeScript knows that `x` must be a string
@@ -153,7 +154,7 @@ function foo(a?: number | null) {
 
 #### 用户定义的类型守卫
 
-JavaScript 没有足够丰富的内建运行时自省支持。当你值使用普通 Javascript 对象（使用你控制的结构化输入），你甚至不能访问`instanceof`或者`typeof`。对于这些场景，一可以创建用户定义的类型守卫函数。他们只是函数，返回`someArgumentName is SomeType`。这里是一个例子：
+JavaScript 没有足够丰富的内建运行时自省支持。当你值使用普通 Javascript 对象（使用你控制的结构化输入），你甚至不能访问`instanceof`或者`typeof`。对于这些场景，你可以创建用户定义的类型守卫函数。他们只是函数，返回`someArgumentName is SomeType`。这里是一个例子：
 ```ts
 /**
  * Just some interfaces
