@@ -5,9 +5,9 @@
 > [Youtube: never 类型的视频课程](https://www.youtube.com/watch?v=aldIFYWu6xc)
 > [Egghead: never 类型的视频课程](https://egghead.io/lessons/typescript-use-the-never-type-to-avoid-code-with-dead-ends-using-typescript)
 
-编程语言设计的确有一个底部类型的概念，在你进行代码流分析之后，就能自然得出结论。TypeScript 使用代码流分析（😎），因此它需要可靠的存在的可能永远不会发生的的东西。
+编程语言设计的确有一个兜底类型的概念，在你进行代码流分析之后，就能自然得出结论。TypeScript 使用代码流分析（😎），因此它需要可靠的表示可能永远不会发生的的东西。
 
-用在 TypeScrpt 的`never`类型去贡献这个底部类型。这是自然发生的情况：
+用在 TypeScrpt 的`never`类型去贡献这个兜底类型。这是自然发生的情况：
 
 - 一个函数永远不会返回（比如，如果函数体有`whilte(true){}`）
 - 一个函数总是抛出（比如，在`function foo(){throw new Error('Not Implemented')}`，`foo`的返回类型是`never`）

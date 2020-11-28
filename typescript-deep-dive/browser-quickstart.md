@@ -1,3 +1,4 @@
+[已校对]
 # 浏览器入门
 
 ### 浏览器中的 TypeScript
@@ -9,19 +10,19 @@
 
 #### 通用机器设置
 
-- 安装[Node.js]()
-- 安装[Git]()
+- 安装[Node.js](https://nodejs.org/en/download/)
+- 安装[Git](https://git-scm.com/downloads)
 
 #### 快速项目设置
 
-使用[https://github.com/basarat/react-typescript]()作为基础
+使用[https://github.com/basarat/react-typescript](https://github.com/basarat/react-typescript)作为基础
 ```ts
 git clone https://github.com/basarat/react-typescript.git
 cd react-typescript
 npm install
 ```
 
-现在使用使用它作为基础，并跳到[开发你的令人吃惊的应用]()
+现在使用使用它作为基础，并跳到[开发你的令人吃惊的应用](https://basarat.gitbook.io/typescript/browser#develop-your-amazing-application)
 
 #### 项目设置详情
 
@@ -149,7 +150,7 @@ ReactDOM.render(
 > 你可以使用`npm install typescript@latest react@latest react-dom@latest @types/react@latest @types/react-dom@latest webpack@latest webpack-dev-server@latest webpack-cli@latest ts-loader@latest clean-webpack-plugin@latest html-webpack-plugin@latest --save-exact`获取最新的包
 
 - 通过运行`npm start`执行实时开发。
-    - 访问[http://localhost:8080/]()
+    - 访问[http://localhost:8080/](http://localhost:8080/)
     - 编辑`src/app/app.tsx`（或者任何 ts/tsx 文件以一些方式被`src/app/app.tsx`），应用实时加载
     - 编辑`src/templates/index.html`，服务端热加载
 - 构建产品资源，通过运行`npm run build`

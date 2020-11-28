@@ -1,3 +1,4 @@
+[已校对]
 # 小心 outFile
 
 对你来说使用这个是一个很坏的主意，因为下面的原因：
@@ -89,10 +90,10 @@ module M {
 ```ts
 var t = 5;
 ```
-因此，`a.ts`[不能独立编译]()
+因此，`a.ts`[不能独立编译](https://github.com/Microsoft/TypeScript/issues/2715)
 
 ### 总结
 
 `--out`其实是某一些构建工具的工作。尽管这类构建工具可以从外部模块提供的依赖提及受益。因此我们推荐你使用外部模块，然后让构建工具为你创建单独的`.js`，如果你想要。
 
-[https://twitter.com/nycdotnet/status/613705850574778368]()
+[https://twitter.com/nycdotnet/status/613705850574778368](https://twitter.com/nycdotnet/status/613705850574778368)

@@ -9,7 +9,7 @@ interface Iterator<T> {
 }
 ```
 
-（[更多在之后的`<T>`声明]()）
+（[更多在之后的`<T>`声明](https://basarat.gitbook.io/typescript/type-system/generics)）
 
 这个接口允许去找回一个值，从一些术语对象的集合或者序列。
 

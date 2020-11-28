@@ -1,3 +1,4 @@
+[已校对]
 # Node.js 入门
 
 TypeScript 从一开始就对 Node.js 有第一级的支持。这是快速设置 Node.js 项目的设置：

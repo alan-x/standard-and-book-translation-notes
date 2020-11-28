@@ -58,4 +58,4 @@
 
 ### 分享
 
-风险链接：[https://basarat.gitbook.io/typescript/]()
+风险链接：[https://basarat.gitbook.io/typescript/](https://basarat.gitbook.io/typescript/)

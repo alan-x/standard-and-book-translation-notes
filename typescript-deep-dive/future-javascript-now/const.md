@@ -1,6 +1,7 @@
+[已校对]
 # const
 
-`const`是一个非常受环境的增强，由 ES6 / TypeScript 提供，它允许你让变量不可变。从文档和运行时的角度来讲，这形式很好。使用 const，只需要使用`const`替代`var`：
+`const`是一个非常受欢迎的增强，由 ES6 / TypeScript 提供，它允许你让变量不可变。从文档和运行时的角度来讲，这形式很好。使用 const，只需要使用`const`替代`var`：
 ```ts
 const foo = 123;
 ```

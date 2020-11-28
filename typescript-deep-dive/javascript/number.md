@@ -1,3 +1,4 @@
+[已校对]
 # Number
 
 当你在任何编程语言需要处理数字，你需要小心语言特性是如何处理数字的。这是关于 JavaScript 的一些批评信息，你需要小心 
@@ -48,11 +49,11 @@ console.log(Number.isSafeInteger(Number.MAX_SAFE_INTEGER + 1)); // false
 console.log(Number.isSafeInteger(Number.MAX_SAFE_INTEGER + 10)); // false
 ```
 
-> JavaScript 最终将会支持[BigInt]()。现在，如果你想要任何精度的整形，使用下面提到的`big.js`
+> JavaScript 最终将会支持[BigInt](https://developers.google.com/web/updates/2018/05/bigint)。现在，如果你想要任何精度的整形，使用下面提到的`big.js`
 
 ### big.js
 
-当你为金融计算使用数学的时候（比如。GST 计算，金额的分，等），使用类似[big.js]()类似的库，他是为了以下设计：
+当你为金融计算使用数学的时候（比如。GST 计算，金额的分，等），使用类似[big.js](https://github.com/MikeMcl/big.js/)类似的库，他是为了以下设计：
 
 - 完美的十进制数学
 - 安全的整形值之外

@@ -1,3 +1,4 @@
+[已校对]
 # 贡献
 
 TypeScript 是 OSS，并且在 GitHub，并且团队欢迎社区输入。
@@ -70,5 +71,5 @@ git remote add origin https://github.com/basarat/TypeScript.git
 
 ### 更多
 
-- 一个 Remo 文章：[https://dev.to/remojansen/learn-how-to-contribute-to-the-typescript-compiler-on-github-through-a-real-world-example-4df0]()
+- 一个 Remo 文章：[https://dev.to/remojansen/learn-how-to-contribute-to-the-typescript-compiler-on-github-through-a-real-world-example-4df0](https://dev.to/remojansen/learn-how-to-contribute-to-the-typescript-compiler-on-github-through-a-real-world-example-4df0)
 

@@ -1,3 +1,4 @@
+[校对]
 # 相等
 
 ### 相等
@@ -28,7 +29,7 @@ console.log(0 === ""); // false
 console.log({a:123} == {a:123}); // False
 console.log({a:123} === {a:123}); // False
 ```
-执行这类检查查看[deep-equal]()npm 包，比如：
+执行这类检查查看[deep-equal](https://www.npmjs.com/package/deep-equal)npm 包，比如：
 ```ts
 import * as deepEqual from "deep-equal";
 

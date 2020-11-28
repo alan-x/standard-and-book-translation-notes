@@ -1,3 +1,4 @@
+[已校对]
 # 生成器源码映射
 
 可以说大部分的`emitter.ts`是本地函数`emitJavaScript`（我们在之前展示了这个函数的初始化过程）。他基本上设置了一连串的本地并击中`emitSourceFile`。下面是这个函数的重访，花时间聚焦在`SourceMap`东西：

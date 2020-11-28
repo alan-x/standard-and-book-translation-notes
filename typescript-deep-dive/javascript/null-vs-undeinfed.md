@@ -1,6 +1,7 @@
+[已校对]
 # Null 和 Undefined
 
-> [yourube 上这个主题的免费视频]()
+> [yourube 上这个主题的免费视频](https://www.youtube.com/watch?v=kaUfBNzuUAI)
 
 JavaScript（和通过 TypeScript 扩展的）有两个底层类型：`null`和`undefined`。他们是为了不同的东西：
 
@@ -120,6 +121,6 @@ JSON.stringify({willStay: null, willBeGone: undefined}); // {"willStay":null}
 
 ### 最后的想法
 
-TypeScript 团队不使用`null`：[TypeScript 编码指南]()并且它不会到这任何问题。Douglas Crockford 认为[`null`是一个很坏的主意]()并且我们应该只使用`undefined`。
+TypeScript 团队不使用`null`：[TypeScript 编码指南](https://github.com/Microsoft/TypeScript/wiki/Coding-guidelines#null-and-undefined)并且它不会到这任何问题。Douglas Crockford 认为[`null`是一个很坏的主意](https://www.youtube.com/watch?v=PSGEjv3Tqo0&feature=youtu.be&t=9m21s)并且我们应该只使用`undefined`。
 
 然而，NodeJS 风格的代码库为 Error 参数使用`null`作为标准，因为它表示`Something is currently unavailable`。我个人不关心两个的区别，因为大部分项目使用不同见解的库，都可以使用`== null`排除。

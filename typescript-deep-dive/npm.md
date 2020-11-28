@@ -1,10 +1,10 @@
 # NPM
 
-> 有趣的事实是`npm`[不是一个缩写]()，因此它不能展开，但是我们通常把它叫做`node 包管理`。
+> 有趣的事实是`npm`[不是一个缩写](https://twitter.com/npmjs/status/347057301401763840)，因此它不能展开，但是我们通常把它叫做`node package manage`。
 
 `npm`是一个二进制，默认随着`node`的安装，用于管理社区分享的 JavaScript/TypeScript 包。
 
-- NPM 包部署在（从这里安装）[https://www.npmjs.com/]()（云上）
+- NPM 包部署在（从这里安装）[https://www.npmjs.com/](https://www.npmjs.com/)（云上）
 
 
 ### 快速常见设置
@@ -98,6 +98,6 @@ npm i react
 
 #### 私有的包
 
-如果你的公司/团队/企业想要一个私有包，你需要注册一个简单的计划，详细在这里：[https://www.npmjs.com/pricing]()。
+如果你的公司/团队/企业想要一个私有包，你需要注册一个简单的计划，详细在这里：[https://www.npmjs.com/pricing](https://www.npmjs.com/pricing)。
 
 当然，你需要一个有权限的账户去下载一个私有的包。

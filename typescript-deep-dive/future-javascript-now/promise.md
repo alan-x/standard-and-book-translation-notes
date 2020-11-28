@@ -1,7 +1,8 @@
+[已校对]
 # Promise
 
 ### Promise
-`Promise`类是存在于很多现代 JavaScript 引擎的东西，也可以简单通过[垫片]()。promise 的主要动机是引入异步风格的错误处理为 Async/Await 风格代码。
+`Promise`类是存在于很多现代 JavaScript 引擎的东西，也可以简单通过[垫片](https://github.com/stefanpenner/es6-promise)。promise 的主要动机是引入异步风格的错误处理为 Async/Await 风格代码。
 
 ### 回调风格代码
 
@@ -98,7 +99,7 @@ loadJSON('invalid.json', function (err, data) {
 });
 ```
 
-然而，这个代码有一个不易察觉的 bug。如果回调（`cb`），而是`JSON.parse`，抛出一个错误，因为我们将它包裹在一个`try`/`catch`，`catch`执行，我们再一次调用了回调，回调被调用了两次，这显示在下面的例子：
+然而，这个代码有一个不易察觉的 bug。如果不是回调（`cb`），而是`JSON.parse`，抛出一个错误，因为我们将它包裹在一个`try`/`catch`，`catch`执行，我们再一次调用了回调，回调被调用了两次，这显示在下面的例子：
 ```ts
 import fs = require('fs');
 
@@ -356,7 +357,7 @@ Promise.resolve(123)
     });
 ```
 
-### 转话一个回调风格函数去返回一个 promise
+### 转化一个回调风格函数去返回一个 promise
 
 简单包裹一个函数调用到一个 promise，并且
 

@@ -1,3 +1,4 @@
+[已校对]
 # 限制属性设置器
 
 优先使用显示的 set/get 函数（比如，`setBar`和`getBar`函数），而不是 setters/getters。

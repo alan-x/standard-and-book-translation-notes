@@ -1,4 +1,8 @@
-TypeScript 编译器的源码位于[src/compiler]()文件夹下。
+[已校对]
+
+# TypeScript 编译器内部
+
+TypeScript 编译器的源码位于[src/compiler](https://github.com/Microsoft/TypeScript/tree/master/src/compiler)文件夹下。
 
 它分为以下几个关键部分：
 - 扫描器（`scanner.ts`）

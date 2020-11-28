@@ -1,7 +1,8 @@
+[已校对]
 # Program
 ---
 
-定义在`program.ts`。编译上下文（）在 TypeScript 编译器中标示为`Program`。它由`SourceFile`和编译器选项组成。
+定义在`program.ts`。编译上下文（https://basarat.gitbook.io/typescript/project/compilation-context）在 TypeScript 编译器中标示为`Program`。它由`SourceFile`和编译器选项组成。
 
 
 

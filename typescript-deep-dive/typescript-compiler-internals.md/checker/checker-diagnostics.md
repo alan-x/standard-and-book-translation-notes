@@ -1,3 +1,4 @@
+[已校对]
 # 检查器诊断
 
 `initializeTypeChecker`内存在下面的代码：

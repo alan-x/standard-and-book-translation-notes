@@ -1,10 +1,11 @@
+[已校对]
 # 类
 
 ### 类
 
 为什么在 JavaScript 中，将类作为第一类项很重要的原因是：
 
-1. [类提供了一个有用的结构化抽象]()
+1. [类提供了一个有用的结构化抽象](https://basarat.gitbook.io/typescript/main-1/classesareuseful)
 2. 为开发者提供一个一致的方式去使用类，而不是每一个框架（emberjs，reactjs 等）一个自己的版本。
 
 最终 JavaScript 开发者可以有`class`。这里我们有一个基本类叫做 Point：
@@ -173,7 +174,7 @@ class Foo {
 }
 ```
 
-这是一个常见的模式，TypeScript 提供一个简短方式，你可以在成员前面天乩阿一个访问修饰符，它自动在类上声明并从构造器复制。因此前面的例子可以重写为（注意`public x:number`）：
+这是一个常见的模式，TypeScript 提供一个简短方式，你可以在成员前面添加一个访问修饰符，它自动在类上声明并从构造器复制。因此前面的例子可以重写为（注意`public x:number`）：
 ```ts
 class Foo {
     constructor(public x:number) {

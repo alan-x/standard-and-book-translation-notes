@@ -1,12 +1,13 @@
+[已校对]
 # ChangeLog
 
 > 阅读一个关于项目进度的 markdown 文件比阅读一个 commit 日志更简单
 
-从提交信息自动生成 changelog 是现在的常见模式。有一个项目叫做[conventional-changelog]()可以从提交信息生成一个遵守约定的 changelog。
+从提交信息自动生成 changelog 是现在的常见模式。有一个项目叫做[conventional-changelog](https://github.com/conventional-changelog/conventional-changelog)可以从提交信息生成一个遵守约定的 changelog。
 
 ### 提交信息约定
 
-最常见的约定是 angular 提交信息约定，在这里[详细记录]()。
+最常见的约定是 angular 提交信息约定，在这里[详细记录](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines)。
 
 ### 设置
 

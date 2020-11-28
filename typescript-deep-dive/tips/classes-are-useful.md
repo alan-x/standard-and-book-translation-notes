@@ -22,7 +22,7 @@ function foo() {
 
 这作为 revealing 模块模式被知道，在 JavaScript（利用 JavaScript 的闭包）中很常见。
 
-如果你使用[文件模式（你应该这么做，因为全局范围不好）]()，则你的文件的效果相同。然而，有很多的例子表明，人们将会如下编写代码：
+如果你使用[文件模式（你应该这么做，因为全局范围不好）](https://basarat.gitbook.io/typescript/project/modules)，则你的文件的效果相同。然而，有很多的例子表明，人们将会如下编写代码：
 ```ts
 let someProperty;
 

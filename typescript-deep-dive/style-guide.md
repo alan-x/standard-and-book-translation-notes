@@ -1,23 +1,25 @@
+[已校对]
 # 风格指南
 
 > 一个非官方 TypeScript 风格指南
 
-人们问我关于这个的观点。个人而言，我不强制这些在我的团队和项目，但是它在一些人觉得需要有一个强力一致性的时候被提及的确有帮助。还有一些其他东西我觉得更强，覆盖在 [提示章节]()(比如，类型断言是坏的，属性设置起是坏的)。
+人们问我关于这个的观点。个人而言，我不强制这些在我的团队和项目，但是它在一些人觉得需要有一个强力一致性的时候被提及的确有帮助。还有一些其他东西我觉得更强，覆盖在 [提示章节](https://basarat.gitbook.io/typescript/main-1)(比如，类型断言是坏的，属性设置起是坏的)。
 
 关键章节：
-- [变量]()
-- [类]()
-- [接口]()
-- [类型]()
-- [命名空间]()
-- [枚举]()
-- [`null`vs`undefined`]()
-- [格式化]()
-- [单引号和双引号]()
-- [Tab 和空格]()
-- [使用逗号]()
-- [文件名]()
-- [`type`和`interface`]()
+- [变量](https://basarat.gitbook.io/typescript/styleguide#variable-and-function)
+- [类](https://basarat.gitbook.io/typescript/styleguide#class)
+- [接口](https://basarat.gitbook.io/typescript/styleguide#interface)
+- [类型](https://basarat.gitbook.io/typescript/styleguide#type)
+- [命名空间](https://basarat.gitbook.io/typescript/styleguide#namespace)
+- [枚举](https://basarat.gitbook.io/typescript/styleguide#enum)
+- [`null`vs`undefined`](https://basarat.gitbook.io/typescript/styleguide#null-vs-undefined)
+- [格式化](https://basarat.gitbook.io/typescript/styleguide#formatting)
+- [单引号和双引号](https://basarat.gitbook.io/typescript/styleguide#quotes)
+- [Tab 和空格](https://basarat.gitbook.io/typescript/styleguide#spaces)
+- [使用逗号](https://basarat.gitbook.io/typescript/styleguide#semicolons)
+- [声明数组为`Type[]`](https://basarat.gitbook.io/typescript/styleguide#array)
+- [文件名](https://basarat.gitbook.io/typescript/styleguide#filename)
+- [`type`和`interface`](https://basarat.gitbook.io/typescript/styleguide#type-vs-interface)
 
 ### 变量和函数
 
@@ -223,7 +225,7 @@ const foo: string = "hello";
 
 - 推荐单引号`'`，除非必要
 
-> 原因：很多团队这么做（比如，[airbnb]()，[standard]()，[npm]()，[node]()，[google/angular]()，[facebook/react]()）。输入很简单（在大部分键盘不需要 shift）。[Prettier 团队也推荐单引号]()
+> 原因：很多团队这么做（比如，[airbnb](https://github.com/airbnb/javascript)，[standard](https://github.com/feross/standard)，[npm](https://github.com/npm/npm)，[node](https://github.com/nodejs/node)，[google/angular](https://github.com/angular/angular/)，[facebook/react](https://github.com/facebook/react)）。输入很简单（在大部分键盘不需要 shift）。[Prettier 团队也推荐单引号](https://github.com/prettier/prettier/issues/1105)
 
 > 双引号并非没有急啊值：允许简单复制粘贴对象到 JSON。允许人们使用其他语言去使用而不改变引号。但我决定不偏离 JS 社区的决定。
 
@@ -235,13 +237,13 @@ const foo: string = "hello";
 
 - 使用`2`空格，不是 tab
 
-> 原因：很多团队这么做（比如，[airbnb]()，[standard]()，[npm]()，[node]()，[google/angular]()，[facebook/react]()）。TypeScript/VSCode 团队使用 4 空格，但是对生态系统中例外。
+> 原因：很多团队这么做（比如，[airbnb](https://github.com/airbnb/javascript)，[idiomatic](https://github.com/rwaldron/idiomatic.js)，[standard](https://github.com/feross/standard)，[npm](https://github.com/npm/npm)，[node](https://github.com/nodejs/node)，[google/angular](https://github.com/angular/angular/)，[facebook/react](https://github.com/facebook/react)）。TypeScript/VSCode 团队使用 4 空格，但是对生态系统中例外。
 
 ### 封号
 
 - 使用封号
 
-> 原因：明确的封号帮助语言格式化工具提供一致的结果。缺少 ASI（自动封号插入）可以欺骗新的开发者，比如`foo() \n (function(){})`，将会成为一个单独的语句（不是两个）。TC39[也警告这个]()。团队例子：[airbnb]()，[google/angulr]()，[facebook/react]()，[Microsoft/TypeScript]()。
+> 原因：明确的封号帮助语言格式化工具提供一致的结果。缺少 ASI（自动封号插入）可以欺骗新的开发者，比如`foo() \n (function(){})`，将会成为一个单独的语句（不是两个）。TC39[也警告这个](https://github.com/tc39/ecma262/pull/1062)。团队例子：[airbnb](https://github.com/airbnb/javascript)，[idiomatic](https://github.com/rwaldron/idiomatic.js)，[google/angulr](https://github.com/angular/angular/)，[facebook/react](https://github.com/facebook/react)，[Microsoft/TypeScript](https://github.com/Microsoft/TypeScript/)。
 
 ### 数组
 

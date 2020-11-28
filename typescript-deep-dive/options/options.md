@@ -1,3 +1,4 @@
+[已校对]
 # 选项
 
 TypeScript 有时候会阻止你做一些开箱即用的东西，比如，使用还没有的声明的变量（当然你可以为外部系统使用一个声明文件）。
@@ -19,4 +20,4 @@ tsc --someBooleanOption
 ```
 > 这些默认都是`false`
 
-点击[这里]()查看所有的编译器选项。
+点击[这里](https://www.typescriptlang.org/docs/handbook/compiler-options.html)查看所有的编译器选项。

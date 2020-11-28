@@ -1,3 +1,4 @@
+[已校对]
 # strictNullChecks
 
 默认`null`和`undefined`可以赋值给 TypeScript 中的所有类型，比如：
@@ -22,7 +23,7 @@ interface Member {
   age?: number
 }
 ```
-不是每一个`Member`将会提供潭门的名字，因此`age`是可选的属性，意味着`age`可能或者可能不是`undefined`。
+不是每一个`Member`将会提供他们的名字，因此`age`是可选的属性，意味着`age`可能或者可能不是`undefined`。
 
 `undefined`是所有邪恶的根源。它通常导致运行时错误。很容易写出在运行时抛出`Error`的代码：
 ```ts

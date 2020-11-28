@@ -1,3 +1,6 @@
+[已校对]
+# 检查器
+
 就像我们之前提到的，检查器是让 TypeScript 比其他 JavaScript 转化器威力更强大的东西。检查器位于`checker.ts`，这时候有 23k+ 行的TypeScript（编译器最大的部分）。
 
 

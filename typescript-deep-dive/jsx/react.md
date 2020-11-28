@@ -1,11 +1,12 @@
+[已校对]
 # React
 
-> [React/TypeScript 最佳实践的免费的 youtube 视频]()
-> [PRO Egghead 的 TypeScript 和 React 课程]()
+> [React/TypeScript 最佳实践的免费的 youtube 视频](https://www.youtube.com/watch?v=7EW67MqgJvs&list=PLYvdvJlnTOjHNayH7MukKbSJ6PueUNkkG)
+> [PRO Egghead 的 TypeScript 和 React 课程](https://egghead.io/courses/use-typescript-to-develop-react-applications)
 
 ### 设置
 
-我们的[浏览器快速入口已经为你设置好了 react 应用的开发]()。这是主要高亮。
+我们的[浏览器快速入口已经为你设置好了 react 应用的开发](https://basarat.gitbook.io/typescript/browser)。这是关键点。
 
 - 使用`.tsx`文件扩展（而不是`.ts`）
 - 在你的`tsconfig.json`的`compilerOptions`使用`"jsx": "react"`。
@@ -14,7 +15,7 @@
 
 ### HTML 标签 vs 组件
 
-React 可以渲染 HTML 标签（字符串）或者 React 组件。JavaScript 发射这些元素不一样（`React.createElement('div')` vs `React.createElement(MyComponent)`）。这取决于第一个字符的大小写。`foo`被认为是 HTML 标签，`Foo`是一个组件。
+React 可以渲染 HTML 标签（字符串）或者 React 组件。JavaScript 这些元素生成的 js 不一样（`React.createElement('div')` vs `React.createElement(MyComponent)`）。这取决于第一个字符的大小写。`foo`被认为是 HTML 标签，`Foo`是一个组件。
 
 ### 类型检测
 
@@ -50,7 +51,7 @@ const MyComponent: React.FunctionComponent<Props> = (props) => {
 
 #### 空函数组件
 
-随着[@types/react PR #46643]()，你可以使用一个新的`React.VoidFunctionComponent`或者`React.VFC`类型，如果你希望去声明一个不接受`children`得到组件。这是一个临时解决方案，知道下一个大版本的类型定义（VoidFunctionComponent 将会被废弃，FunctionComponent 将会默认接受无 children）。
+随着[@types/react PR #46643](https://github.com/DefinitelyTyped/DefinitelyTyped/pull/46643)，你可以使用一个新的`React.VoidFunctionComponent`或者`React.VFC`类型，如果你希望去声明一个不接受`children`得到组件。这是一个临时解决方案，知道下一个大版本的类型定义（VoidFunctionComponent 将会被废弃，FunctionComponent 将会默认接受无 children）。
 
 ```ts
 type Props = { 
@@ -107,7 +108,7 @@ class MyComponent extends React.Component<Props, {}> {
 
 #### React JSX 提示：接受一个组件的实例
 
-React 定义提供`React.ReactElement<T>`去郧西你去声明`<T/>`类组件实例的结果。比如：
+React 定义提供`React.ReactElement<T>`去允许你去声明`<T/>`类组件实例的结果。比如：
 ```ts
 class MyAwesomeComponent extends React.Component {
   render() {
@@ -133,7 +134,7 @@ const X: React.Component<Props> = foo; // from somewhere
 
 #### React JSX 提示：泛型组件
 
-它按与其工作。这是一个例子：
+它按预期工作。这是一个例子：
 ```ts
 /** A generic component */
 type SelectProps<T> = { items: T[] }
@@ -204,11 +205,11 @@ class FocusingInput extends React.Component<{ value: string, onChange: (value: s
 
 #### 类型断言
 
-就像[前面提到的]()，使用`as Foo`语法作为类型断言。
+就像[前面提到的](https://basarat.gitbook.io/typescript/type-system/type-assertion#as-foo-vs-foo)，使用`as Foo`语法作为类型断言。
 
 ### 默认属性
 
-- 使用默认属性的状态组件：你可以告诉 TypeScript 一个属性将会使用一个 null 检测操作符去外部（通过 React）提供（这不是一个好主意，但是这是我能想到的最简单最大化的额外代码解决方案）。
+- 使用默认属性的状态组件：你可以告诉 TypeScript 一个属性将会使用一个 null 检测操作符去额外（通过 React）提供（这不是一个好主意，但是这是我能想到的最简单最大化的额外代码解决方案）。
 ```ts
 class Hello extends React.Component<{
   /**
@@ -282,6 +283,6 @@ declare global {
 ```
 
 现在你可以在 TSX 中使用：
-```ts
+```tsx
 <my-awesome-slider name='amazing'/>
 ```

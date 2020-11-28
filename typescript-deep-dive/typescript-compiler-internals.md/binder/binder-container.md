@@ -1,3 +1,4 @@
+[已校对]
 # 绑定器容器
 
 一个 AST 节点可以是一个容器。这决定了节点和关联的符号将会拥有的`SymbolTables`。容器是一个抽象的概念（比如，没有关联的数据结构）。这个概念被一些东西驱动，一个是`ContainerFlags`枚举。函数`getContainerFlags`（在`binder.ts`）驱动这个标志并展示在下面：

@@ -1,6 +1,7 @@
+[已校对]
 # Async Await
 
-> 一个专业 egghead 视频课程覆盖这相同的物料
+> [一个专业 egghead 视频课程覆盖这相同的物料](https://egghead.io/courses/async-await-using-typescript)
 
 作为一个思想实验，想象下面：一个方式去告诉 JavaScript 运行时在`await`关键字是去暂停代码执行，当用在一个 promise 并只恢复一次（并且如果）promise 从被处理的函数返回：
 ```ts
@@ -16,11 +17,11 @@ async function foo() {
 }
 ```
 
-当 promise 万层呢的时候，执行继续，
+当 promise 完成的时候，执行继续，
 - 如果它是 fulfilled，则等待返回的值
 - 如果他是 rejected，一个错误将会同步抛出，这样我们可以捕获
 
-这突然（）让异步程序和同步程序一样简单。这个思想实验需要三个东西：
+这突然（并且魔幻的）让异步程序和同步程序一样简单。这个思想实验需要三个东西：
 - 任意暂停函数执行。
 - 任意在一个函数内部放置一个值
 - 任意一个函数内部抛出一个异常
@@ -29,7 +30,7 @@ async function foo() {
 
 ### 生成的 JavaScript
 
-你不需要去理解这个，但是这很简单，如果你[度过生成器]()。函数`foo`可以简单如下包裹：
+你不需要去理解这个，但是这很简单，如果你[读过生成器](https://basarat.gitbook.io/typescript/future-javascript/generators)。函数`foo`可以简单如下包裹：
 ```ts
 const foo = wrapToReturnPromise(function* () {
     try {
@@ -45,9 +46,9 @@ const foo = wrapToReturnPromise(function* () {
 
 ### TypeScript 中支持的 Async Await
 
-Async - Await 已经被[TypeScript 从版本 1.7]()开始支持。异步函数使用异步关键字作为前缀；await 暂停执行，直到一个异步函数返回 promise 被 fullfilled，并从 Promise 返回解包的值。它值支持目标 es6 直接转义到 ES6 生成器。
+Async - Await 已经被[TypeScript 从版本 1.7](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-1-7.html)开始支持。异步函数使用异步关键字作为前缀；await 暂停执行，直到一个异步函数返回 promise 被 fullfilled，并从 Promise 返回解包的值。它值支持目标 es6 直接转义到 ES6 生成器。
 
-TypeScript 2.1 [添加了 ES3 和 ES5 运行时的能力，]()意味着你可以自由使用它，不用关心你使用的环境。注意到我们可以使用 async/await 很重要，很多浏览器都你吃，当然，有全局添加的 Promise 的 polyfill。
+TypeScript 2.1 [添加了 ES3 和 ES5 运行时的能力，](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-1.html)意味着你可以自由使用它，不用关心你使用的环境。注意到我们可以使用 async/await 很重要，很多浏览器都你吃，当然，有全局添加的 Promise 的 polyfill。
 
 来看一个例子，看看这个代码，指出 TypeScript async / await 声明如何工作：
 ```ts
@@ -107,7 +108,7 @@ function dramaticWelcome() {
 dramaticWelcome();
 ```
 
-你可以在[这里]()查看完整例子
+你可以在[这里](https://cdn.rawgit.com/basarat/typescript-book/705e4496/code/async-await/es6/asyncAwaitES6.js)查看完整例子
 
 转化为 ES5（--target es5）
 ```ts
@@ -182,6 +183,6 @@ function dramaticWelcome() {
 }
 dramaticWelcome();
 ```
-你可以在[这里]()查看完整例子
+你可以在[这里](https://cdn.rawgit.com/basarat/typescript-book/705e4496/code/async-await/es5/asyncAwaitES5.js)查看完整例子
 
-注意：对于两个目标场景，我们需要去确保我们的运行时有一个 ECMAScript-兼容的 Promise 全局可用。这可能会为 Primise 获取一个 polyfill。我们也需要去确保 TypeScript 知道 Promise 存在，通过这只我们的 lib 标签为一些类似“dom”，“es2015”或者“dom”，“es2015.promise”，“es5”。我们可以在[这里]()看到浏览器做了什么支持 Priomise（原生和垫片）。
+注意：对于两个目标场景，我们需要去确保我们的运行时有一个 ECMAScript-兼容的 Promise 全局可用。这可能会为 Primise 获取一个 polyfill。我们也需要去确保 TypeScript 知道 Promise 存在，通过这只我们的 lib 标签为一些类似“dom”，“es2015”或者“dom”，“es2015.promise”，“es5”。我们可以在[这里](https://kangax.github.io/compat-table/es6/#test-Promise)看到浏览器做了什么支持 Priomise（原生和垫片）。

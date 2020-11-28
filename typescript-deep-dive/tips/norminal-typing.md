@@ -2,7 +2,7 @@
 
 ### Norminal Typing
 
-TypeScript 类型系统是结构化的，[并且这是收益的主要动机之一]()。然而，真实世界的系统有一些使用场景，你希望两个变量不同，因为他们有不同的类型名字，就算他们有相同的结构。一个非常常见的额使用场景是标示结构（通常只是字符串，但是有语义和他们的名字关联，在类似 C#/Java 的语言中）。
+TypeScript 类型系统是结构化的，[并且这是收益的主要动机之一](https://basarat.gitbook.io/typescript/getting-started/why-typescript)。然而，真实世界的系统有一些使用场景，你希望两个变量不同，因为他们有不同的类型名字，就算他们有相同的结构。一个非常常见的额使用场景是标示结构（通常只是字符串，但是有语义和他们的名字关联，在类似 C#/Java 的语言中）。
 
 有一些模式出现在社区，我按个人的喜好倒序覆盖他们：
 
@@ -39,7 +39,7 @@ foo = foo; // Okay
 
 ### 使用枚举
 
-[TypeScript 中国内地额枚举]()提供某个级别的 norminal typing。两个枚举类型不想等，如果他们名字不同。我们使用这个事实为结构上兼容的类型提供 nominal typing。
+[TypeScript 中的枚举](https://basarat.gitbook.io/typescript/type-system/enums)提供某个级别的 norminal typing。两个枚举类型不想等，如果他们名字不同。我们使用这个事实为结构上兼容的类型提供 nominal typing。
 
 解决方案包括：
 - 创建一个 brand 枚举
@@ -79,7 +79,7 @@ str = barId;
 
 ### 使用接口
 
-因为`number`和`enum`是类型兼容的，前面的技术不能为他们使用。相反，我们使用接口去破坏结构兼容。这方法依旧被 TypeScript 编译器团队使用，因此值得提起。使用`_`前缀和一个`Brand`后缀是一个我强烈推荐的惯例（并且[这跟随 TypeScript 团队]()）。
+因为`number`和`enum`是类型兼容的，前面的技术不能为他们使用。相反，我们使用接口去破坏结构兼容。这方法依旧被 TypeScript 编译器团队使用，因此值得提起。使用`_`前缀和一个`Brand`后缀是一个我强烈推荐的惯例（并且[这跟随 TypeScript 团队](https://github.com/Microsoft/TypeScript/blob/7b48a182c05ea4dea81bab73ecbbe9e013a79e99/src/compiler/types.ts#L693-L698)）。
 
 这个解决方案包含如下：
 

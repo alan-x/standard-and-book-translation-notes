@@ -1,3 +1,4 @@
+[已校对]
 # 非 React JSX
 
 TypeScript 提供你以类型安全的方式使用 React 之外的 JSX 的能力。下面列出了可自定义的点，但是注意注意这只对高级 UI 框架作者：
@@ -25,7 +26,7 @@ var div = <div>Hello JSX!</div>
 ```
 
 编译为：
-```ts
+```tsx
 tsc --jsx react --reactNamespace jsxFactory --m commonJS
 ```
 生成：

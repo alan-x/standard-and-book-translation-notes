@@ -1,3 +1,4 @@
+[已校对]
 # 单例模式
 
 便捷的单例模式是用于克服所有代码都必须在`class`中的事实：
@@ -32,7 +33,7 @@ namespace Singleton {
 Singleton.someMethod();
 ```
 
-> 警告：单例只是[全局]()的一个花名
+> 警告：单例只是[全局](http://stackoverflow.com/a/142450/390330)的一个花名
 
 对于大部分项目，`namespace`可以被一个模块替换。
 ```ts

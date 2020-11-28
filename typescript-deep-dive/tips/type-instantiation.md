@@ -1,3 +1,4 @@
+[已校对]
 # 类型实例化
 
 假设你有一个泛型参数，比如一个类`Foo`：
@@ -31,4 +32,4 @@ function id<T>(x: T) { return x; }
 const idNum = id as {(x:number):number};
 ```
 
-> 受这个[stackoverflow 问题]()启发
+> 受这个[stackoverflow 问题](http://stackoverflow.com/a/34864705/390330)启发

@@ -1,3 +1,4 @@
+[已校对]
 # 现在的未来的 JavaScript
 
 TypeScript 的主要卖点之一是它允许你使用一大串的 ES6 特性，超出当前的（ES3 和 ES5 级别）JavaScript 引擎（比如当前浏览器和 Node.js）。这里，我们深入为什么这些特性很有用，通过跟随这些特性在 TypeScript 是如何实现的。

@@ -1,3 +1,4 @@
+[已校对]
 # 绑定器 SymbolTable
 
 SymbolTable 实现为一个简单的哈希表。这是接口（`type.ts`）：
@@ -21,7 +22,7 @@ exports?: SymbolTable;                  // Module exports
 
 ### SymbolTable 污染
 
-SymbolTable 被`Symbols`污染，主要通过待哦用`declareSymbol`。这个函数完全展示在下面：
+SymbolTable 被`Symbols`污染，主要通过调用用`declareSymbol`。这个函数完全展示在下面：
 ```ts
 /**
  * Declares a Symbol for the node and adds it to symbols. Reports errors for conflicting identifier names.

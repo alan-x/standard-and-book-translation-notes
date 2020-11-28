@@ -1,6 +1,6 @@
 # 库入门
 
-- [一个创建 TypeScript 节点模块的课程]()
+- [一个创建 TypeScript 节点模块的课程](https://egghead.io/lessons/typescript-create-high-quality-npm-packages-using-typescript)
 
 使用 TypeScript 编写的模块非常有趣，因为你会德奥非常好的编译时安全性和自动完成（基本上是可执行的文档）。
 

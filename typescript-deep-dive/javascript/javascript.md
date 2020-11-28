@@ -1,3 +1,4 @@
+[已校对]
 # JavaScript
 
 过去（还会继续）JavaScript 的一些语法有很多的争议。TypeScript 和他们不一样，因为你的 JavaScript 是 TypeScript。这是一张图：
@@ -12,7 +13,7 @@
 
 TypeScript 只是有文档的 JavaScript
 
-> JSNext 可以接受交互 - JS 下一个版本的每一个提案不是都实际加入到浏览器。TypeScript 只添加到达[stage 3]()的提案。
+> JSNext 可以接受交互 - JS 下一个版本的每一个提案不是都实际加入到浏览器。TypeScript 只添加到达[stage 3](https://tc39.es/process-document/)的提案。
 
 
 ### 让 JavaScript 更好

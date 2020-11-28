@@ -1,3 +1,4 @@
+[已校对]
 # 绑定器
 
 这里之外的大部分 JavaScript 转化器都比 TypeScript 简单，因为它提供了很小的代码分析方式。经典的 JavaScript 转化器只有下面的流程：

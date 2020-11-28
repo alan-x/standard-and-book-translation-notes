@@ -1,6 +1,7 @@
+[已校对]
 # 绑定器函数
 
-两个标准绑定器函数是`bindSourceFile`和`mergeSymbolTable`。我们将在厦门看到这些。
+两个标准绑定器函数是`bindSourceFile`和`mergeSymbolTable`。我们将在下面看到这些。
 
 ### `bindSourceFile`
 

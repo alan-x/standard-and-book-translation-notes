@@ -1,3 +1,4 @@
+[已校对]
 # Prettier
 
 Prettier 是一个 facebook 提供的非常好的工具，让代码格式化非常简单，它值得提到。使用我们推荐的项目设置（aka `src`文件夹中的所有东西） TypeScript 非常简单：

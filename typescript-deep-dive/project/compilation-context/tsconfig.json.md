@@ -1,3 +1,4 @@
+[已校对]
 # tsconfig.json
 
 ### 基础

@@ -1,3 +1,4 @@
+[已校对]
 # 提示：遍历子孙
 
 有一个工具函数`ts.forEachChild`允许你去访问 AST 中任何节点的子节点
@@ -21,7 +22,7 @@ export function forEachChild<T>(node: Node, cbNode: (node: Node) => T, cbNodeArr
             // .... lots more
 ```
 
-基本上，它检测`node.kind`，并基于`node`题哦那个一个接口的假设，并在子孙节点上调用`cbNode`。然而，注意这个函数不再所有的子孙节点上调用`visitNode`（）。如果你 想要 AST 节点的所有子孙就调用`node`侧`.getChildren`成员函数。
+基本上，它检测`node.kind`，并基于`node`题哦那个一个接口的假设，并在子孙节点上调用`cbNode`。然而，注意这个函数不再所有的子孙节点上调用`visitNode`（比如，SyntxKind.SemicolonToken）。如果你 想要 AST 节点的所有子孙就调用`node`侧`.getChildren`成员函数。
 
 比如，这是一个函数，打印一个节点详细的`AST`：
 ```ts

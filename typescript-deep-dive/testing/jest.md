@@ -1,6 +1,7 @@
+[已校对]
 # Jest
 
-> Pro egghead 关于 Jest/TypeScript 的课程
+> [Pro egghead 关于 Jest/TypeScript 的课程](https://egghead.io/lessons/typescript-getting-started-with-jest-using-typescript)
 
 没有一个测试解决方案是完美的。也就是说，jest 是一个优秀的单元测试选项，提供非常好的 TypeScript 支持。
 
@@ -9,7 +10,7 @@
 
 ### 步骤1:安装
 
-使用 npm 安装下列的：
+使用 npm 安装下列：
 ```ts
 npm i jest @types/jest ts-jest typescript -D
 ```
@@ -105,7 +106,7 @@ test('basic again', async () => {
 
 #### enzyme 例子
 
-> Pro egghead  关于 Enzyme / Jest / TypeScript 的课程
+> [Pro egghead  关于 Enzyme / Jest / TypeScript 的课程](https://egghead.io/lessons/react-test-react-components-and-dom-using-enzyme)
 
 Enzyme 允许你使用 dom 支持去测试 react 组件。设置 enzyme 有三个步骤：
 
@@ -185,7 +186,7 @@ Enzyme 允许你使用 dom 支持去测试 react 组件。设置 enzyme 有三�
 
 ### 为什么我们喜欢 jest 的原因
 
-> 关于这些特性的细节，可以查阅 jest 网站
+> [关于这些特性的细节，可以查阅 jest 网站](http://facebook.github.io/jest/ )
 
 - 内置断言库
 - 好的 TypeScript 支持

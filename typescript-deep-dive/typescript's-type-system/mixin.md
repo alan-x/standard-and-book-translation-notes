@@ -1,3 +1,4 @@
+[已校对]
 # Mixins
 
 TypeScript（和 JavaScript）类支持严格的单一继承。因此你不能：

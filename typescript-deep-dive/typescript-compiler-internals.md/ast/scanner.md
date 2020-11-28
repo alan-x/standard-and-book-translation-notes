@@ -1,3 +1,4 @@
+[已校对]
 # 扫描器
 
 TypeScript 扫描器的源代码完全位于`scanner.ts`。扫描在内部被`Parser`控制用于转化源代码到 AST。这是期待的结果：

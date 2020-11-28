@@ -1,3 +1,4 @@
+[已校对]
 # 文件模块细节
 
 TypeScript 内部模块模式包含了大量威力和可用性。这里我们讨论他的威力和一些需要映射真实世界使用的模式。
@@ -142,7 +143,7 @@ import someLocalNameForThisFile from "../foo";
 
 ### 动态查找
 
-当导入路径不是相对的，查找通过[node 风格解析]()查找。这里我只给出一个简单的例子：
+当导入路径不是相对的，查找通过[node 风格解析](https://nodejs.org/api/modules.html#modules_all_together)查找。这里我只给出一个简单的例子：
 
 - 你有`import * as foo from 'foo'`，下面是顺序查找的 place
     - `./node_modules/foo`

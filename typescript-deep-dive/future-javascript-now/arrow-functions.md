@@ -1,3 +1,4 @@
+[已校对]
 # 箭头函数
 
 ### 箭头函数
@@ -13,7 +14,7 @@
 var inc = (x)=>x+1;
 ```
 
-`this`通常是 JavaScript 的一个痛点。正如以为智者说的“我讨厌 JavaScript 因为它往往简单的丢失`this`”。胖箭头修复它通过从环境上下文捕获`this`的意义。考虑这个纯洁的 JavaScript 类：
+`this`通常是 JavaScript 的一个痛点。正如一位智者说的“我讨厌 JavaScript 因为它往往简单的丢失`this`”。胖箭头修复它，通过从环境上下文捕获`this`的意义。考虑这个纯洁的 JavaScript 类：
 ```ts
 function Person(age) {
     this.age = age;
@@ -70,7 +71,7 @@ setTimeout(person.growOld,1000);
 setTimeout(function() { console.log(person.age); },2000); // 2
 ```
 
-[关于这个模式一个甜美的视频]()
+[关于这个模式一个甜美的视频](https://egghead.io/lessons/typescript-make-usages-of-this-safe-in-class-methods)
 
 ### 提示：箭头函数需求
 
@@ -93,7 +94,7 @@ person.growOld();
 
 ### 提示：箭头函数和使用`this`的库
 
-很多库这么做，比如`jQuery`迭代（一个例子是[https://api.jquery.com/jquery.each/]()）将使用`this`去传递你它当前遍历的对象。在这个场景，如果你想要访问库传递的`this`，只要包裹的上下文只使用一个临时变量，类似`_self`，就像你将会在箭头函数中缺省的那样。
+很多库这么做，比如`jQuery`迭代（一个例子是[https://api.jquery.com/jquery.each/](https://api.jquery.com/jquery.each/)）将使用`this`去传递你它当前遍历的对象。在这个场景，如果你想要访问库传递的`this`，只要包裹的上下文只使用一个临时变量，类似`_self`，就像你将会在箭头函数中缺省的那样。
 ```ts
 let _self = this;
 something.each(function() {

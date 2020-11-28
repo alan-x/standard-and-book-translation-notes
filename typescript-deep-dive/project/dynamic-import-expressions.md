@@ -1,10 +1,11 @@
+[已校对]
 # 动态导入表达式
 
-动态导入表达式是 ECMAScript 新特性的一部分，允许用户去异步请求一个模块，在你的程序的任意点。TC39 JavaScript 委员会已经有了这个提案，现在在 stage 3，它叫做[JavaScript import() 提案]()。
+动态导入表达式是 ECMAScript 新特性的一部分，允许用户去异步请求一个模块，在你的程序的任意点。TC39 JavaScript 委员会已经有了这个提案，现在在 stage 3，它叫做[JavaScript import() 提案](https://github.com/tc39/proposal-dynamic-import)。
 
-或者，webpack 打包器有一特特性叫做[Code Splitting]()，允许你去分离你的包到块中，可以在之后的时间异步下载。比如，这允许先提供一个最小化启动包，然后去异步加载额外特性。
+或者，webpack 打包器有一特特性叫做[Code Splitting](https://webpack.js.org/guides/code-splitting/)，允许你去分离你的包到块中，可以在之后的时间异步下载。比如，这允许先提供一个最小化启动包，然后去异步加载额外特性。
 
-很自然会认为（）[TypeScript 2.4 动态导入表达式]()将自动产生包块并自动代码分离你的 JS 最终包。但是，这并不是如看到的那么简单，因为它依赖于我们正在使用的 tsconfig.json 配置。
+很自然会认为（如果我们在开发工作流使用我webpack）[TypeScript 2.4 动态导入表达式](https://github.com/Microsoft/TypeScript/wiki/What%27s-new-in-TypeScript#dynamic-import-expressions)将自动产生包块并自动代码分离你的 JS 最终包。但是，这并不是如看到的那么简单，因为它依赖于我们正在使用的 tsconfig.json 配置。
 
 webpack 代码分离支持两种类似的技术去达到这个目的：使用 import()（预获取，ECMAScript 提案）和 require.ensure()（遗留的，webpack 指定的）。这意味着期待 TypeScript 输出是留下 import() 语句而不是转化它到其他东西。
 
@@ -58,7 +59,7 @@ import(/* webpackChunkName: "momentjs" */ "moment")
 
 重要笔记：
 
-- 使用"module":"esnext" TypeScript 产生伪装的 import() 语句输入到 WebPack 代码分割。
-- 了解更多信息阅读这个文章：[动态导入表达式和 webpack 2 代码分割和 TypeScript 2.4 的集成]()。
+- 使用 "module":"esnext" TypeScript 产生伪装的 import() 语句输入到 WebPack 代码分割。
+- 了解更多信息阅读这个文章：[动态导入表达式和 webpack 2 代码分割和 TypeScript 2.4 的集成](https://blog.josequinto.com/2017/06/29/dynamic-import-expressions-and-webpack-code-splitting-integration-with-typescript-2-4/)。
 
-你可以在[这里查]()看完整的例子。
+你可以在[这里查](https://cdn.rawgit.com/basarat/typescript-book/705e4496/code/dynamic-import-expressions/dynamicImportExpression.js)看完整的例子。

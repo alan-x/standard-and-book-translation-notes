@@ -1,4 +1,5 @@
-# 绑定器具声明
+[已校对]
+# 绑定器声明
 
 绑定一个`node`和一个`symbol`通过一些函数执行。一个函数用于绑定`SourceFile`节点到源文件符号（如果是一个外部模块）的是`addDeclarationToSymbol`函数。
 

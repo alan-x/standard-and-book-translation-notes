@@ -1,10 +1,11 @@
+[已校对]
 # global.d.ts
 
-我们讨论的全局 vs 文件模块，当我们覆盖[项目]()的时候，推荐使用基于文件的模块，不污染全局命名空间。
+我们讨论的全局 vs 文件模块，当我们覆盖[项目](https://basarat.gitbook.io/typescript/project/modules)的时候，推荐使用基于文件的模块，不污染全局命名空间。
 
 然而，如果你有 TypeScript 开发新手，你可以给他们一个`global.d.ts`文件去放置接口/类型在全局命名空间，让获取一些类型简单，可以在你所有的 TypeScript 代码可用。
 
-`global.d.ts`另一个使用场景是声明编译时常量，Webpack 通过标准[DefinePlugin]()插件注入到源代码
+`global.d.ts`另一个使用场景是声明编译时常量，Webpack 通过标准[DefinePlugin](https://webpack.js.org/plugins/define-plugin/)插件注入到源代码
 
 ```ts
 declare const BUILD_MODE_PRODUCTION: boolean; // can be used for conditional compiling
