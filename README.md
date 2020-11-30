@@ -1,3 +1,3 @@
-# My Awesome Book
-
-This file file serves as your book's preface, a great place to describe your book's content and ideas.
+# 标准和书籍翻译笔记
+---
+> 这个库包含部分我阅读的标准和书籍的翻译，包括但不限于 rfc、whatwg、typescript 等，还有一些官方文档。
